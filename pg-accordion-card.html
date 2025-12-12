@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>pg-accordion-card - Design Handoff</title>
+  <title>.base-card-accordion - Design Handoff</title>
   <style>
     * {
       margin: 0;
@@ -489,7 +489,7 @@
     <aside class="sidebar">
       <div class="logo">
         <a href="#" onclick="event.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'}); return false;" style="text-decoration: none; color: inherit;">
-          pg-accordion-card
+          .base-card-accordion
         </a>
       </div>
       <nav>
@@ -509,14 +509,14 @@
     <main class="main-content">
       <!-- Header -->
       <header class="header">
-        <h1>pg-accordion-card</h1>
+        <h1>.base-card-accordion</h1>
         
         <div class="meta-info">
           <div class="meta-item">
             <strong>Type:</strong> Component Set
           </div>
           <div class="meta-item">
-            <strong>Last Updated:</strong> 12/12/2025, 12:33:46 PM
+            <strong>Last Updated:</strong> 12/12/2025, 12:47:04 PM
           </div>
           
         </div>
@@ -529,20 +529,20 @@
         <div class="variant-gallery">
           <!-- Main Display -->
           <div class="variant-main">
-            <img src="assets/2383-69191.png" alt="flavor=expanded" />
+            <img src="assets/2179-6928.png" alt="expanded=no" />
             <div class="variant-placeholder" style="display: none; color: #9ca3af; padding: 20px;">No preview</div>
-            <div class="variant-main-props" style="margin-top: 12px;">flavor=expanded</div>
+            <div class="variant-main-props" style="margin-top: 12px;">expanded=no</div>
           </div>
 
           <!-- Thumbnails -->
           <div class="variant-thumbnails">
-            <div class="variant-thumbnail active" data-variant-id="2383:69191">
-              <img src="assets/2383-69191.png" alt="flavor=expanded" />
-              <div class="variant-thumbnail-label">flavor=expanded</div>
+            <div class="variant-thumbnail active" data-variant-id="2179:6928">
+              <img src="assets/2179-6928.png" alt="expanded=no" />
+              <div class="variant-thumbnail-label">expanded=no</div>
             </div>
-            <div class="variant-thumbnail " data-variant-id="2383:69190">
-              <img src="assets/2383-69190.png" alt="flavor=collapsed" />
-              <div class="variant-thumbnail-label">flavor=collapsed</div>
+            <div class="variant-thumbnail " data-variant-id="2179:6927">
+              <img src="assets/2179-6927.png" alt="expanded=yes" />
+              <div class="variant-thumbnail-label">expanded=yes</div>
             </div>
           </div>
         </div>
@@ -550,7 +550,7 @@
 
       <script>
         // Store variant data for JavaScript access
-        window.variantData = {"2383:69191":{"name":"flavor=expanded","screenshot":"assets/2383-69191.png","properties":{"flavor":"expanded"}},"2383:69190":{"name":"flavor=collapsed","screenshot":"assets/2383-69190.png","properties":{"flavor":"collapsed"}}};
+        window.variantData = {"2179:6928":{"name":"expanded=no","screenshot":"assets/2179-6928.png","properties":{"expanded":"no"}},"2179:6927":{"name":"expanded=yes","screenshot":"assets/2179-6927.png","properties":{"expanded":"yes"}}};
       </script>
       <section id="properties" class="section">
         <div class="section-header">
@@ -574,10 +574,10 @@
               <td>-</td>
             </tr>
             <tr>
-              <td><strong>flavor</strong></td>
+              <td><strong>expanded</strong></td>
               <td>VARIANT</td>
               <td>-</td>
-              <td>expanded, collapsed</td>
+              <td>no, yes</td>
             </tr>
           </tbody>
         </table>
@@ -585,7 +585,7 @@
       <section id="typography" class="section">
         <div class="section-header">
           <div class="section-icon">✍️</div>
-          <h2>Typography (7)</h2>
+          <h2>Typography (4)</h2>
         </div>
         <table class="specs-table">
           <thead>
@@ -602,21 +602,12 @@
           <tbody>
             <tr>
               <td>Inter</td>
-              <td>500</td>
-              <td>22px</td>
-              <td>30px</td>
+              <td>700</td>
+              <td>18px</td>
+              <td>26px</td>
               <td>0%</td>
-              <td><span class="token" onclick="copyToClipboard('hb/decorative-type/display/d2/medium', this)" title="Click to copy token name">hb/decorative-type/display/d2/medium</span></td>
-              <td>Title</td>
-            </tr>
-            <tr>
-              <td>Inter</td>
-              <td>500</td>
-              <td>20px</td>
-              <td>28px</td>
-              <td>0%</td>
-              <td><span class="token" onclick="copyToClipboard('hb/decorative-type/display/d3/medium', this)" title="Click to copy token name">hb/decorative-type/display/d3/medium</span></td>
-              <td>Subtitle</td>
+              <td><span class="token" onclick="copyToClipboard('hb/decorative-type/display/d4/semibold', this)" title="Click to copy token name">hb/decorative-type/display/d4/semibold</span></td>
+              <td>title</td>
             </tr>
             <tr>
               <td>Inter</td>
@@ -625,34 +616,7 @@
               <td>20px</td>
               <td>0%</td>
               <td><span class="token" onclick="copyToClipboard('hb/decorative-type/display/d5/regular', this)" title="Click to copy token name">hb/decorative-type/display/d5/regular</span></td>
-              <td>Note max 120 characters ipsum lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.</td>
-            </tr>
-            <tr>
-              <td>Inter</td>
-              <td>700</td>
-              <td>12px</td>
-              <td>18px</td>
-              <td>0%</td>
-              <td><span class="token" onclick="copyToClipboard('hb/decorative-type/display/d6/semibold', this)" title="Click to copy token name">hb/decorative-type/display/d6/semibold</span></td>
-              <td>123</td>
-            </tr>
-            <tr>
-              <td>Inter</td>
-              <td>400</td>
-              <td>12px</td>
-              <td>18px</td>
-              <td>0%</td>
-              <td><span class="token" onclick="copyToClipboard('hb/decorative-type/display/d6/regular', this)" title="Click to copy token name">hb/decorative-type/display/d6/regular</span></td>
-              <td>Text</td>
-            </tr>
-            <tr>
-              <td>Inter</td>
-              <td>500</td>
-              <td>14px</td>
-              <td>20px</td>
-              <td>0%</td>
-              <td><span class="token" onclick="copyToClipboard('hb/decorative-type/display/d5/medium', this)" title="Click to copy token name">hb/decorative-type/display/d5/medium</span></td>
-              <td>text, Button, Text</td>
+              <td>subtitle</td>
             </tr>
             <tr>
               <td>Inter</td>
@@ -663,13 +627,22 @@
               <td><span class="token" onclick="copyToClipboard('hb/decorative-type/display/d5/semibold', this)" title="Click to copy token name">hb/decorative-type/display/d5/semibold</span></td>
               <td>Slot - replace me</td>
             </tr>
+            <tr>
+              <td>Inter</td>
+              <td>500</td>
+              <td>16px</td>
+              <td>24px</td>
+              <td>0%</td>
+              <td><span class="token" onclick="copyToClipboard('hb/decorative-type/body/medium', this)" title="Click to copy token name">hb/decorative-type/body/medium</span></td>
+              <td>Label</td>
+            </tr>
           </tbody>
         </table>
       </section>
       <section id="colors" class="section">
         <div class="section-header">
           <div class="section-icon">🎨</div>
-          <h2>Colors (17)</h2>
+          <h2>Colors (9)</h2>
         </div>
         <table class="specs-table">
           <thead>
@@ -685,31 +658,13 @@
           </thead>
           <tbody>
             <tr>
-              <td><span class="color-swatch" style="background-color: #FFFFFF"></span></td>
-              <td><span class="token" onclick="copyToClipboard('#FFFFFF', this)" title="Click to copy hex">#FFFFFF</span></td>
-              <td>255, 255, 255</td>
-              <td>100%</td>
-              <td>FILL</td>
-              <td><span class="token" onclick="copyToClipboard('hb/decorative/surface-color/default', this)" title="Click to copy token name">hb/decorative/surface-color/default</span></td>
-              <td>flavor=expanded, .base-core-chevron, 123, sd-button, sd-label-number, flavor=collapsed</td>
-            </tr>
-            <tr>
-              <td><span class="color-swatch" style="background-color: #DEE5EA"></span></td>
-              <td><span class="token" onclick="copyToClipboard('#DEE5EA', this)" title="Click to copy hex">#DEE5EA</span></td>
-              <td>222, 229, 234</td>
-              <td>100%</td>
-              <td>STROKE</td>
-              <td><span class="token" onclick="copyToClipboard('hb/decorative/border-color/lightest', this)" title="Click to copy token name">hb/decorative/border-color/lightest</span></td>
-              <td>flavor=expanded, flavor=collapsed</td>
-            </tr>
-            <tr>
               <td><span class="color-swatch" style="background-color: #4C5D6B"></span></td>
               <td><span class="token" onclick="copyToClipboard('#4C5D6B', this)" title="Click to copy hex">#4C5D6B</span></td>
               <td>76, 93, 107</td>
               <td>100%</td>
               <td>FILL</td>
-              <td><span class="token" onclick="copyToClipboard('hb/action/content-color/quaternary??/default', this)" title="Click to copy token name">hb/action/content-color/quaternary??/default</span></td>
-              <td>vector, Text</td>
+              <td><span class="token" onclick="copyToClipboard('hb/decorative/content-color/tertiary', this)" title="Click to copy token name">hb/decorative/content-color/tertiary</span></td>
+              <td>vector, subtitle</td>
             </tr>
             <tr>
               <td><span class="color-swatch" style="background-color: #1E272E"></span></td>
@@ -718,106 +673,7 @@
               <td>100%</td>
               <td>FILL</td>
               <td><span class="token" onclick="copyToClipboard('hb/decorative/content-color/primary', this)" title="Click to copy token name">hb/decorative/content-color/primary</span></td>
-              <td>Title, Subtitle</td>
-            </tr>
-            <tr>
-              <td><span class="color-swatch" style="background-color: #66778A"></span></td>
-              <td><span class="token" onclick="copyToClipboard('#66778A', this)" title="Click to copy hex">#66778A</span></td>
-              <td>102, 119, 138</td>
-              <td>100%</td>
-              <td>FILL</td>
-              <td><span class="token" onclick="copyToClipboard('hb/decorative/content-color/quaternary', this)" title="Click to copy token name">hb/decorative/content-color/quaternary</span></td>
-              <td>Note max 120 characters ipsum lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor., Slot - replace me</td>
-            </tr>
-            <tr>
-              <td><span class="color-swatch" style="background-color: #CC3333"></span></td>
-              <td><span class="token" onclick="copyToClipboard('#CC3333', this)" title="Click to copy hex">#CC3333</span></td>
-              <td>204, 51, 51</td>
-              <td>100%</td>
-              <td>FILL</td>
-              <td><span class="token" onclick="copyToClipboard('hb/color/feedback/critical/darker', this)" title="Click to copy token name">hb/color/feedback/critical/darker</span></td>
-              <td>sd-label-number</td>
-            </tr>
-            <tr>
-              <td><span class="color-swatch" style="background-color: #EDF1F3"></span></td>
-              <td><span class="token" onclick="copyToClipboard('#EDF1F3', this)" title="Click to copy hex">#EDF1F3</span></td>
-              <td>237, 241, 243</td>
-              <td>100%</td>
-              <td>FILL</td>
-              <td><span class="token" onclick="copyToClipboard('hb/color/feedback/neutral/lighter', this)" title="Click to copy token name">hb/color/feedback/neutral/lighter</span></td>
-              <td>hb-badge</td>
-            </tr>
-            <tr>
-              <td><span class="color-swatch" style="background-color: #33434F"></span></td>
-              <td><span class="token" onclick="copyToClipboard('#33434F', this)" title="Click to copy hex">#33434F</span></td>
-              <td>51, 67, 79</td>
-              <td>100%</td>
-              <td>STROKE</td>
-              <td><span class="token" onclick="copyToClipboard('hb/color/feedback/neutral/darkest', this)" title="Click to copy token name">hb/color/feedback/neutral/darkest</span></td>
-              <td>hb-badge</td>
-            </tr>
-            <tr>
-              <td><span class="color-swatch" style="background-color: #33434F"></span></td>
-              <td><span class="token" onclick="copyToClipboard('#33434F', this)" title="Click to copy hex">#33434F</span></td>
-              <td>51, 67, 79</td>
-              <td>100%</td>
-              <td>FILL</td>
-              <td><span class="token" onclick="copyToClipboard('hb/color/feedback/neutral/darkest', this)" title="Click to copy token name">hb/color/feedback/neutral/darkest</span></td>
-              <td>vector, Text, 123</td>
-            </tr>
-            <tr>
-              <td><span class="color-swatch" style="background-color: #1B70EE"></span></td>
-              <td><span class="token" onclick="copyToClipboard('#1B70EE', this)" title="Click to copy hex">#1B70EE</span></td>
-              <td>27, 112, 238</td>
-              <td>100%</td>
-              <td>FILL</td>
-              <td><span class="token" onclick="copyToClipboard('hb/action/content-color/secondary/default', this)" title="Click to copy token name">hb/action/content-color/secondary/default</span></td>
-              <td>vector, text</td>
-            </tr>
-            <tr>
-              <td><span class="color-swatch" style="background-color: #2C49EF"></span></td>
-              <td><span class="token" onclick="copyToClipboard('#2C49EF', this)" title="Click to copy hex">#2C49EF</span></td>
-              <td>44, 73, 239</td>
-              <td>100%</td>
-              <td>STROKE</td>
-              <td><span class="token" onclick="copyToClipboard('hb/color/action/border/primary/default', this)" title="Click to copy token name">hb/color/action/border/primary/default</span></td>
-              <td>sd-button</td>
-            </tr>
-            <tr>
-              <td><span class="color-swatch" style="background-color: #2C49EF"></span></td>
-              <td><span class="token" onclick="copyToClipboard('#2C49EF', this)" title="Click to copy hex">#2C49EF</span></td>
-              <td>44, 73, 239</td>
-              <td>100%</td>
-              <td>FILL</td>
-              <td><span class="token" onclick="copyToClipboard('hb/color/action/content/primary/default', this)" title="Click to copy token name">hb/color/action/content/primary/default</span></td>
-              <td>vector, Button</td>
-            </tr>
-            <tr>
-              <td><span class="color-swatch" style="background-color: #BCC7D1"></span></td>
-              <td><span class="token" onclick="copyToClipboard('#BCC7D1', this)" title="Click to copy hex">#BCC7D1</span></td>
-              <td>188, 199, 209</td>
-              <td>100%</td>
-              <td>STROKE</td>
-              <td><span class="token" onclick="copyToClipboard('hb/color/decorative/border/lighter', this)" title="Click to copy token name">hb/color/decorative/border/lighter</span></td>
-              <td>sd-label-number</td>
-            </tr>
-            <tr>
-              <td><span class="color-swatch" style="background-color: #F8FAFB"></span></td>
-              <td><span class="token" onclick="copyToClipboard('#F8FAFB', this)" title="Click to copy hex">#F8FAFB</span></td>
-              <td>248, 250, 251</td>
-              <td>100%</td>
-              <td>FILL</td>
-              <td><span class="token" onclick="copyToClipboard('hb/color/decorative/surface/lighter', this)" title="Click to copy token name">hb/color/decorative/surface/lighter</span></td>
-              <td>sd-internal-slot</td>
-            </tr>
-            <tr>
-              <td><span class="color-swatch" style="background-color: #8293A6"></span></td>
-              <td><span class="token" onclick="copyToClipboard('#8293A6', this)" title="Click to copy hex">#8293A6</span></td>
-              <td>130, 147, 166</td>
-              <td>100%</td>
-              <td>STROKE</td>
-              <td><span class="token" onclick="copyToClipboard('hb/color/decorative/border/darker', this)" title="Click to copy token name">hb/color/decorative/border/darker</span></td>
-              <td>sd-internal-slot</td>
+              <td>title</td>
             </tr>
             <tr>
               <td><span class="color-swatch" style="background-color: #F3F6F8"></span></td>
@@ -825,8 +681,8 @@
               <td>243, 246, 248</td>
               <td>100%</td>
               <td>FILL</td>
-              <td><span class="token" onclick="copyToClipboard('hb/decorative/surface-color/tint/tertiary', this)" title="Click to copy token name">hb/decorative/surface-color/tint/tertiary</span></td>
-              <td>accordion_group-placeholder</td>
+              <td><span class="token" onclick="copyToClipboard('hb/color/decorative/surface/middle', this)" title="Click to copy token name">hb/color/decorative/surface/middle</span></td>
+              <td>sd-internal_slot</td>
             </tr>
             <tr>
               <td><span class="color-swatch" style="background-color: #9FADBC"></span></td>
@@ -835,7 +691,52 @@
               <td>100%</td>
               <td>STROKE</td>
               <td><span class="token" onclick="copyToClipboard('hb/decorative/border-color/bright', this)" title="Click to copy token name">hb/decorative/border-color/bright</span></td>
-              <td>accordion_group-placeholder</td>
+              <td>sd-internal_slot</td>
+            </tr>
+            <tr>
+              <td><span class="color-swatch" style="background-color: #66778A"></span></td>
+              <td><span class="token" onclick="copyToClipboard('#66778A', this)" title="Click to copy hex">#66778A</span></td>
+              <td>102, 119, 138</td>
+              <td>100%</td>
+              <td>FILL</td>
+              <td><span class="token" onclick="copyToClipboard('hb/decorative/content-color/quaternary', this)" title="Click to copy token name">hb/decorative/content-color/quaternary</span></td>
+              <td>Slot - replace me</td>
+            </tr>
+            <tr>
+              <td><span class="color-swatch" style="background-color: #DEE5EA"></span></td>
+              <td><span class="token" onclick="copyToClipboard('#DEE5EA', this)" title="Click to copy hex">#DEE5EA</span></td>
+              <td>222, 229, 234</td>
+              <td>100%</td>
+              <td>FILL</td>
+              <td><span class="token" onclick="copyToClipboard('hb/decorative/border-color/lightest', this)" title="Click to copy token name">hb/decorative/border-color/lightest</span></td>
+              <td>divider</td>
+            </tr>
+            <tr>
+              <td><span class="color-swatch" style="background-color: #FFFFFF"></span></td>
+              <td><span class="token" onclick="copyToClipboard('#FFFFFF', this)" title="Click to copy hex">#FFFFFF</span></td>
+              <td>255, 255, 255</td>
+              <td>100%</td>
+              <td>FILL</td>
+              <td>-</td>
+              <td>Footer types</td>
+            </tr>
+            <tr>
+              <td><span class="color-swatch" style="background-color: #0E38D8"></span></td>
+              <td><span class="token" onclick="copyToClipboard('#0E38D8', this)" title="Click to copy hex">#0E38D8</span></td>
+              <td>14, 56, 216</td>
+              <td>100%</td>
+              <td>FILL</td>
+              <td><span class="token" onclick="copyToClipboard('hb/action/content-color/primary/default', this)" title="Click to copy token name">hb/action/content-color/primary/default</span></td>
+              <td>vector</td>
+            </tr>
+            <tr>
+              <td><span class="color-swatch" style="background-color: #1B70EE"></span></td>
+              <td><span class="token" onclick="copyToClipboard('#1B70EE', this)" title="Click to copy hex">#1B70EE</span></td>
+              <td>27, 112, 238</td>
+              <td>100%</td>
+              <td>FILL</td>
+              <td><span class="token" onclick="copyToClipboard('hb/action/content-color/secondary/default', this)" title="Click to copy token name">hb/action/content-color/secondary/default</span></td>
+              <td>Label</td>
             </tr>
           </tbody>
         </table>
@@ -843,7 +744,7 @@
       <section id="spacing" class="section">
         <div class="section-header">
           <div class="section-icon">📏</div>
-          <h2>Spacing (18)</h2>
+          <h2>Spacing (11)</h2>
         </div>
         <table class="specs-table">
           <thead>
@@ -857,33 +758,33 @@
           <tbody>
             <tr>
               <td><strong>PADDING</strong></td>
-              <td>Top: 20px, Right: 16px, Bottom: 20px, Left: 16px</td>
+              <td>Top: 0px, Right: 0px, Bottom: 0px, Left: 0px</td>
               <td>-</td>
-              <td>flavor=expanded, flavor=collapsed</td>
+              <td>expanded=no, .base-card-title, title, text, hb-icon, expanded=yes, sd-divider, .pg-button-link</td>
             </tr>
             <tr>
               <td><strong>GAP</strong></td>
               <td>Horizontal: -px, Vertical: 16px</td>
               <td>-</td>
-              <td>flavor=expanded</td>
-            </tr>
-            <tr>
-              <td><strong>PADDING</strong></td>
-              <td>Top: 0px, Right: 0px, Bottom: 0px, Left: 0px</td>
-              <td>-</td>
-              <td>.base-accordion-title, .base-core-chevron, hb-icon, title, elements, .base-core-elements, sd-button-text , content</td>
+              <td>expanded=no, expanded=yes, .base-card-footer</td>
             </tr>
             <tr>
               <td><strong>GAP</strong></td>
-              <td>Horizontal: 16px, Vertical: -px</td>
+              <td>Horizontal: -px, Vertical: 0px</td>
               <td>-</td>
-              <td>.base-accordion-title, title, flavor=collapsed</td>
+              <td>.base-card-title</td>
+            </tr>
+            <tr>
+              <td><strong>GAP</strong></td>
+              <td>Horizontal: 8px, Vertical: -px</td>
+              <td>-</td>
+              <td>title, text</td>
             </tr>
             <tr>
               <td><strong>GAP</strong></td>
               <td>Horizontal: 0px, Vertical: -px</td>
               <td>-</td>
-              <td>.base-core-chevron, hb-icon, sd-label-number</td>
+              <td>hb-icon, sd-divider, Footer types, .pg-button-link</td>
             </tr>
             <tr>
               <td><strong>PADDING</strong></td>
@@ -895,73 +796,31 @@
               <td><strong>GAP</strong></td>
               <td>Horizontal: 10px, Vertical: -px</td>
               <td>-</td>
-              <td>sd-button-icon, sd-internal-slot, accordion_group-placeholder</td>
+              <td>sd-button-icon, Frame 1, sd-internal_slot</td>
             </tr>
             <tr>
               <td><strong>PADDING</strong></td>
-              <td>Top: 0px, Right: 16px, Bottom: 0px, Left: 0px</td>
+              <td>Top: 0px, Right: 28px, Bottom: 0px, Left: 28px</td>
               <td>-</td>
-              <td>.base-core-title-text</td>
-            </tr>
-            <tr>
-              <td><strong>GAP</strong></td>
-              <td>Horizontal: -px, Vertical: 0px</td>
-              <td>-</td>
-              <td>.base-core-title-text</td>
-            </tr>
-            <tr>
-              <td><strong>GAP</strong></td>
-              <td>Horizontal: 9px, Vertical: -px</td>
-              <td>-</td>
-              <td>elements, .base-core-elements</td>
+              <td>Frame 1</td>
             </tr>
             <tr>
               <td><strong>PADDING</strong></td>
-              <td>Top: 2px, Right: 8px, Bottom: 2px, Left: 8px</td>
+              <td>Top: 20px, Right: 24px, Bottom: 20px, Left: 24px</td>
               <td>-</td>
-              <td>sd-label-number, hb-badge</td>
-            </tr>
-            <tr>
-              <td><strong>GAP</strong></td>
-              <td>Horizontal: 2px, Vertical: -px</td>
-              <td>-</td>
-              <td>hb-badge</td>
-            </tr>
-            <tr>
-              <td><strong>GAP</strong></td>
-              <td>Horizontal: 4px, Vertical: -px</td>
-              <td>-</td>
-              <td>sd-button-text </td>
+              <td>sd-internal_slot</td>
             </tr>
             <tr>
               <td><strong>PADDING</strong></td>
-              <td>Top: 12px, Right: 16px, Bottom: 12px, Left: 16px</td>
+              <td>Top: 0px, Right: 0px, Bottom: 16px, Left: 0px</td>
               <td>-</td>
-              <td>sd-button</td>
-            </tr>
-            <tr>
-              <td><strong>GAP</strong></td>
-              <td>Horizontal: 8px, Vertical: -px</td>
-              <td>-</td>
-              <td>sd-button, content</td>
+              <td>.base-card-footer</td>
             </tr>
             <tr>
               <td><strong>PADDING</strong></td>
-              <td>Top: 4px, Right: 6px, Bottom: 4px, Left: 6px</td>
+              <td>Top: 0px, Right: 0px, Bottom: 0px, Left: 16px</td>
               <td>-</td>
-              <td>sd-internal-slot</td>
-            </tr>
-            <tr>
-              <td><strong>GAP</strong></td>
-              <td>Horizontal: -px, Vertical: 10px</td>
-              <td>-</td>
-              <td>content</td>
-            </tr>
-            <tr>
-              <td><strong>PADDING</strong></td>
-              <td>Top: 20px, Right: 48px, Bottom: 20px, Left: 48px</td>
-              <td>-</td>
-              <td>accordion_group-placeholder</td>
+              <td>Footer types</td>
             </tr>
           </tbody>
         </table>
@@ -969,7 +828,7 @@
       <section id="border-radius" class="section">
         <div class="section-header">
           <div class="section-icon">⭕</div>
-          <h2>Border Radius (3)</h2>
+          <h2>Border Radius (2)</h2>
         </div>
         <table class="specs-table">
           <thead>
@@ -980,16 +839,12 @@
           </thead>
           <tbody>
             <tr>
-              <td><strong>8px (uniform)</strong></td>
-              <td>flavor=expanded, sd-button, sd-internal-slot, accordion_group-placeholder, flavor=collapsed</td>
-            </tr>
-            <tr>
               <td><strong>6px (uniform)</strong></td>
               <td>sd-button-icon</td>
             </tr>
             <tr>
-              <td><strong>16px (uniform)</strong></td>
-              <td>sd-label-number, hb-badge</td>
+              <td><strong>8px (uniform)</strong></td>
+              <td>sd-internal_slot</td>
             </tr>
           </tbody>
         </table>
