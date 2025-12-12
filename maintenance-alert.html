@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maintenance Alert - Design Handoff</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: #1a1a1a;
+      background: #f5f5f5;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background: #ffffff;
+      border-right: 1px solid #e5e5e5;
+      padding: 24px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    .logo {
+      font-size: 14px;
+      font-weight: 600;
+      color: #6366f1;
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-section {
+      margin-bottom: 24px;
+    }
+
+    .nav-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 8px 12px;
+      font-size: 14px;
+      color: #4b5563;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+
+    .nav-link:hover {
+      background: #f3f4f6;
+      color: #1a1a1a;
+    }
+
+    .nav-link.active {
+      background: #eef2ff;
+      color: #6366f1;
+      font-weight: 500;
+    }
+
+    .library-link:hover {
+      opacity: 0.7;
+    }
+
+    /* Main Content */
+    .main-content {
+      padding: 48px 64px;
+      background: #ffffff;
+      overflow-y: auto;
+    }
+
+    .header {
+      margin-bottom: 40px;
+      border-bottom: 1px solid #e5e5e5;
+      padding-bottom: 24px;
+    }
+
+
+    h1 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #1a1a1a;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: #6b7280;
+      margin-bottom: 20px;
+    }
+
+    .meta-info {
+      display: flex;
+      gap: 24px;
+      font-size: 14px;
+      flex-wrap: wrap;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #6b7280;
+    }
+
+    .meta-item strong {
+      color: #1a1a1a;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 500;
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    /* Section */
+    .section {
+      margin-bottom: 56px;
+      scroll-margin-top: 20px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 24px;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+
+    .section-icon {
+      width: 32px;
+      height: 32px;
+      background: #eef2ff;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    /* Specs Table */
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+
+    .specs-table th {
+      text-align: left;
+      padding: 12px;
+      background: #f9fafb;
+      font-weight: 600;
+      color: #374151;
+      border-bottom: 2px solid #e5e5e5;
+    }
+
+    .specs-table td {
+      padding: 12px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    .specs-table tr:hover {
+      background: #f9fafb;
+    }
+
+    .token {
+      font-family: 'Monaco', 'Courier New', monospace;
+      background: #f3f4f6;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 13px;
+      color: #6366f1;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .token:hover {
+      background: #e5e7eb;
+    }
+
+    .token.copied {
+      background: #c8e6c9;
+    }
+
+    /* Code Block */
+    .code-block {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 20px;
+      border-radius: 8px;
+      font-family: 'Monaco', 'Courier New', monospace;
+      font-size: 13px;
+      overflow-x: auto;
+      margin-bottom: 24px;
+    }
+
+    .code-comment {
+      color: #64748b;
+    }
+
+    /* Variant Gallery */
+    .variant-gallery {
+      margin-bottom: 24px;
+    }
+
+    .variant-main {
+      background: white;
+      padding: 48px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+      border: 1px solid #e5e5e5;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 300px;
+      overflow: visible;
+    }
+    
+    .variant-main img {
+      max-width: 100%;
+      max-height: 600px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: block;
+      margin: 0 auto;
+    }
+    
+    .variant-thumbnail {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .variant-thumbnail img {
+      width: 100%;
+      max-width: 120px;
+      height: auto;
+      object-fit: contain;
+      background: #f9fafb;
+      padding: 8px;
+    }
+
+    .variant-main-label {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-top: 16px;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .variant-main-props {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-top: 16px;
+      margin-bottom: 8px;
+      text-align: center;
+      text-transform: lowercase;
+    }
+
+    .variant-thumbnails {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: flex-start;
+    }
+
+    .variant-thumbnail {
+      background: white;
+      padding: 12px;
+      border-radius: 8px;
+      border: 2px solid #e5e5e5;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+      flex-shrink: 0;
+      width: auto;
+      min-width: 120px;
+    }
+
+    .variant-thumbnail:hover {
+      border-color: #6366f1;
+      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.2);
+    }
+
+    .variant-thumbnail.active {
+      border-color: #6366f1;
+      background: #eef2ff;
+      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+    }
+
+    .variant-thumbnail img {
+      max-width: 120px;
+      width: auto;
+      height: auto;
+      margin-bottom: 8px;
+      object-fit: contain;
+    }
+
+    .variant-thumbnail-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: #4b5563;
+    }
+
+    .variant-thumbnail.active .variant-thumbnail-label {
+      color: #6366f1;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      margin: 10px 0;
+      border-radius: 8px;
+    }
+
+    .color-swatch {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border: 1px solid #e5e5e5;
+      vertical-align: middle;
+      margin-right: 8px;
+      border-radius: 4px;
+    }
+
+    .toast {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #10b981;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      z-index: 10000;
+      animation: slideIn 0.3s ease-out;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        display: none;
+      }
+
+      .main-content {
+        padding: 32px 24px;
+      }
+    }
+  </style>
+  <script>
+    function showToast(message) {
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.textContent = message;
+      document.body.appendChild(toast);
+      setTimeout(() => {
+        toast.style.animation = 'slideIn 0.3s ease-out reverse';
+        setTimeout(() => toast.remove(), 300);
+      }, 2000);
+    }
+
+    function copyToClipboard(text, element) {
+      navigator.clipboard.writeText(text).then(() => {
+        element.classList.add('copied');
+        showToast('Copied to clipboard!');
+        setTimeout(() => element.classList.remove('copied'), 1000);
+      }).catch(err => {
+        console.error('Failed to copy:', err);
+        showToast('Failed to copy');
+      });
+    }
+
+    // Smooth scrolling for anchor links
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // Update active nav link
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            this.classList.add('active');
+          }
+        });
+      });
+
+      // Variant thumbnail click handler
+      document.querySelectorAll('.variant-thumbnail').forEach(thumbnail => {
+        thumbnail.addEventListener('click', function() {
+          const variantId = this.getAttribute('data-variant-id');
+          if (!variantId) return;
+
+          const variantData = window.variantData && window.variantData[variantId];
+          if (!variantData) return;
+
+          const mainDisplay = document.querySelector('.variant-main');
+          if (!mainDisplay) return;
+
+          const mainImg = mainDisplay.querySelector('img');
+          const mainProps = mainDisplay.querySelector('.variant-main-props');
+          const placeholder = mainDisplay.querySelector('.variant-placeholder');
+
+          if (variantData.screenshot && mainImg) {
+            mainImg.src = variantData.screenshot;
+            mainImg.alt = variantData.name;
+            mainImg.style.display = 'block';
+            if (placeholder) placeholder.style.display = 'none';
+          } else if (mainImg && placeholder) {
+            mainImg.style.display = 'none';
+            placeholder.style.display = 'block';
+            placeholder.textContent = 'No preview';
+          }
+
+          // Update properties display (removed mainLabel since we only show props)
+          if (mainProps) {
+            if (variantData.properties && Object.keys(variantData.properties).length > 0) {
+              mainProps.textContent = Object.entries(variantData.properties)
+                .map(([key, value]) => key + '=' + value)
+                .join(', ');
+              mainProps.style.display = 'block';
+              mainProps.style.textTransform = 'lowercase';
+            } else {
+              mainProps.textContent = variantData.name.toLowerCase();
+              mainProps.style.display = 'block';
+              mainProps.style.textTransform = 'lowercase';
+            }
+          }
+
+          // Update active thumbnail
+          document.querySelectorAll('.variant-thumbnail').forEach(thumb => {
+            thumb.classList.remove('active');
+          });
+          this.classList.add('active');
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="logo">
+        <a href="#" onclick="event.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'}); return false;" style="text-decoration: none; color: inherit;">
+          Maintenance Alert
+        </a>
+      </div>
+      <nav>
+        <div class="nav-section">
+          <div class="nav-title">Sections</div>
+          <a href="#variants" class="nav-link">🎨 Variants</a>
+          <a href="#properties" class="nav-link">⚙️ Properties</a>
+          <a href="#typography" class="nav-link">✍️ Typography</a>
+          <a href="#colors" class="nav-link">🎨 Colors</a>
+          <a href="#spacing" class="nav-link">📏 Spacing</a>
+          <a href="#border-radius" class="nav-link">⭕ Border Radius</a>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header -->
+      <header class="header">
+        <a href="library.html" class="library-link" style="display: inline-flex; align-items: center; gap: 6px; color: #6366f1; text-decoration: none; font-size: 14px; margin-bottom: 16px; transition: opacity 0.2s;">
+          <span style="font-size: 18px;">←</span>
+          <span>Component Library</span>
+        </a>
+        <h1>Maintenance Alert</h1>
+        
+        <div class="meta-info">
+          <div class="meta-item">
+            <strong>Type:</strong> Component Set
+          </div>
+          <div class="meta-item">
+            <strong>Last Updated:</strong> 12/12/2025, 1:44:15 PM
+          </div>
+          
+        </div>
+      </header>
+      <section id="variants" class="section">
+        <div class="section-header">
+          <div class="section-icon">🎨</div>
+          <h2>Variants (5)</h2>
+        </div>
+        <div class="variant-gallery">
+          <!-- Main Display -->
+          <div class="variant-main">
+            <img src="assets/1629-12936.png" alt="color=blue" />
+            <div class="variant-placeholder" style="display: none; color: #9ca3af; padding: 20px;">No preview</div>
+            <div class="variant-main-props" style="margin-top: 12px;">color=blue</div>
+          </div>
+
+          <!-- Thumbnails -->
+          <div class="variant-thumbnails">
+            <div class="variant-thumbnail active" data-variant-id="1629:12936">
+              <img src="assets/1629-12936.png" alt="color=blue" />
+              <div class="variant-thumbnail-label">color=blue</div>
+            </div>
+            <div class="variant-thumbnail " data-variant-id="1629:12959">
+              <img src="assets/1629-12959.png" alt="color=grey" />
+              <div class="variant-thumbnail-label">color=grey</div>
+            </div>
+            <div class="variant-thumbnail " data-variant-id="1629:12983">
+              <img src="assets/1629-12983.png" alt="color=teal" />
+              <div class="variant-thumbnail-label">color=teal</div>
+            </div>
+            <div class="variant-thumbnail " data-variant-id="1629:12996">
+              <img src="assets/1629-12996.png" alt="color=light teal" />
+              <div class="variant-thumbnail-label">color=light teal</div>
+            </div>
+            <div class="variant-thumbnail " data-variant-id="1629:12971">
+              <img src="assets/1629-12971.png" alt="color=light grey" />
+              <div class="variant-thumbnail-label">color=light grey</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <script>
+        // Store variant data for JavaScript access
+        window.variantData = {"1629:12936":{"name":"color=blue","screenshot":"assets/1629-12936.png","properties":{"color":"blue"}},"1629:12959":{"name":"color=grey","screenshot":"assets/1629-12959.png","properties":{"color":"grey"}},"1629:12983":{"name":"color=teal","screenshot":"assets/1629-12983.png","properties":{"color":"teal"}},"1629:12996":{"name":"color=light teal","screenshot":"assets/1629-12996.png","properties":{"color":"light teal"}},"1629:12971":{"name":"color=light grey","screenshot":"assets/1629-12971.png","properties":{"color":"light grey"}}};
+      </script>
+      <section id="properties" class="section">
+        <div class="section-header">
+          <div class="section-icon">⚙️</div>
+          <h2>Component Properties (7)</h2>
+        </div>
+        <table class="specs-table">
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Type</th>
+              <th>Default Value</th>
+              <th>Available Values</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>title </strong></td>
+              <td>TEXT</td>
+              <td>Maintenance Alert: </td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td><strong>dismiss</strong></td>
+              <td>BOOLEAN</td>
+              <td>true</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td><strong>description</strong></td>
+              <td>BOOLEAN</td>
+              <td>true</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td><strong>title</strong></td>
+              <td>BOOLEAN</td>
+              <td>true</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td><strong>description </strong></td>
+              <td>TEXT</td>
+              <td>The platform will be unavailable from 12:00PM EST June 1st, 2025 due to a scheduled maintenance. Platform will be available starting 12:00PM EST June 2nd, 2025.</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td><strong>view details</strong></td>
+              <td>BOOLEAN</td>
+              <td>true</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td><strong>color</strong></td>
+              <td>VARIANT</td>
+              <td>-</td>
+              <td>blue, grey, light grey, teal, light teal</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section id="typography" class="section">
+        <div class="section-header">
+          <div class="section-icon">✍️</div>
+          <h2>Typography (3)</h2>
+        </div>
+        <table class="specs-table">
+          <thead>
+            <tr>
+              <th>Font Family</th>
+              <th>Weight</th>
+              <th>Size</th>
+              <th>Line Height</th>
+              <th>Letter Spacing</th>
+              <th>Token</th>
+              <th>Used In</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Inter</td>
+              <td>700</td>
+              <td>14px</td>
+              <td>20px</td>
+              <td>0%</td>
+              <td><span class="token" onclick="copyToClipboard('hb/decorative-type/display/d5/semibold', this)" title="Click to copy token name">hb/decorative-type/display/d5/semibold</span></td>
+              <td>Title</td>
+            </tr>
+            <tr>
+              <td>Inter</td>
+              <td>400</td>
+              <td>14px</td>
+              <td>20px</td>
+              <td>0%</td>
+              <td><span class="token" onclick="copyToClipboard('hb/decorative-type/display/d5/regular', this)" title="Click to copy token name">hb/decorative-type/display/d5/regular</span></td>
+              <td>description</td>
+            </tr>
+            <tr>
+              <td>Inter</td>
+              <td>500</td>
+              <td>16px</td>
+              <td>24px</td>
+              <td>0%</td>
+              <td><span class="token" onclick="copyToClipboard('hb/decorative-type/body/medium', this)" title="Click to copy token name">hb/decorative-type/body/medium</span></td>
+              <td>text</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section id="colors" class="section">
+        <div class="section-header">
+          <div class="section-icon">🎨</div>
+          <h2>Colors (11)</h2>
+        </div>
+        <table class="specs-table">
+          <thead>
+            <tr>
+              <th>Color</th>
+              <th>Hex</th>
+              <th>RGB</th>
+              <th>Opacity</th>
+              <th>Type</th>
+              <th>Token</th>
+              <th>Used In</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="color-swatch" style="background-color: #1B59E5"></span></td>
+              <td><span class="token" onclick="copyToClipboard('#1B59E5', this)" title="Click to copy hex">#1B59E5</span></td>
+              <td>27, 89, 229</td>
+              <td>100%</td>
+              <td>FILL</td>
+              <td><span class="token" onclick="copyToClipboard('hb/decorative/surface-color/brand', this)" title="Click to copy token name">hb/decorative/surface-color/brand</span></td>
+              <td>color=blue</td>
+            </tr>
+            <tr>
+              <td><span class="color-swatch" style="background-color: #FFE9D1"></span></td>
+              <td><span class="token" onclick="copyToClipboard('#FFE9D1', this)" title="Click to copy hex">#FFE9D1</span></td>
+              <td>255, 233, 209</td>
+              <td>100%</td>
+              <td>FILL</td>
+              <td><span class="token" onclick="copyToClipboard('hb/feedback/status-color/warning/lighter', this)" title="Click to copy token name">hb/feedback/status-color/warning/lighter</span></td>
+              <td>hb-icon_feedback</td>
+            </tr>
+            <tr>
+              <td><span class="color-swatch" style="background-color: #BD4C0A"></span></td>
+              <td><span class="token" onclick="copyToClipboard('#BD4C0A', this)" title="Click to copy hex">#BD4C0A</span></td>
+              <td>189, 76, 10</td>
+              <td>100%</td>
+              <td>FILL</td>
+              <td><span class="token" onclick="copyToClipboard('hb/feedback/status-color/warning/bold', this)" title="Click to copy token name">hb/feedback/status-color/warning/bold</span></td>
+              <td>vector</td>
+            </tr>
+            <tr>
+              <td><span class="color-swatch" style="background-color: #FFFFFF"></span></td>
+              <td><span class="token" onclick="copyToClipboard('#FFFFFF', this)" title="Click to copy hex">#FFFFFF</span></td>
+              <td>255, 255, 255</td>
+              <td>100%</td>
+              <td>FILL</td>
+              <td><span class="token" onclick="copyToClipboard('hb/decorative/content-color/reverse', this)" title="Click to copy token name">hb/decorative/content-color/reverse</span></td>
+              <td>Title, description, text, vector</td>
+            </tr>
+            <tr>
+              <td><span class="color-swatch" style="background-color: #0E38D8"></span></td>
+              <td><span class="token" onclick="copyToClipboard('#0E38D8', this)" title="Click to copy hex">#0E38D8</span></td>
+              <td>14, 56, 216</td>
+              <td>100%</td>
+              <td>FILL</td>
+              <td><span class="token" onclick="copyToClipboard('hb/action/content-color/primary/default', this)" title="Click to copy token name">hb/action/content-color/primary/default</span></td>
+              <td>vector</td>
+            </tr>
+            <tr>
+              <td><span class="color-swatch" style="background-color: #66778A"></span></td>
+              <td><span class="token" onclick="copyToClipboard('#66778A', this)" title="Click to copy hex">#66778A</span></td>
+              <td>102, 119, 138</td>
+              <td>100%</td>
+              <td>FILL</td>
+              <td><span class="token" onclick="copyToClipboard('hb/decorative/border-color/shade', this)" title="Click to copy token name">hb/decorative/border-color/shade</span></td>
+              <td>color=grey</td>
+            </tr>
+            <tr>
+              <td><span class="color-swatch" style="background-color: #005252"></span></td>
+              <td><span class="token" onclick="copyToClipboard('#005252', this)" title="Click to copy hex">#005252</span></td>
+              <td>0, 82, 82</td>
+              <td>100%</td>
+              <td>FILL</td>
+              <td><span class="token" onclick="copyToClipboard('hb/action/content-color/accent/active', this)" title="Click to copy token name">hb/action/content-color/accent/active</span></td>
+              <td>color=teal</td>
+            </tr>
+            <tr>
+              <td><span class="color-swatch" style="background-color: #00A3A3"></span></td>
+              <td><span class="token" onclick="copyToClipboard('#00A3A3', this)" title="Click to copy hex">#00A3A3</span></td>
+              <td>0, 163, 163</td>
+              <td>100%</td>
+              <td>FILL</td>
+              <td><span class="token" onclick="copyToClipboard('hb/feedback/status-color/trend/superlative', this)" title="Click to copy token name">hb/feedback/status-color/trend/superlative</span></td>
+              <td>color=light teal</td>
+            </tr>
+            <tr>
+              <td><span class="color-swatch" style="background-color: #DEE5EA"></span></td>
+              <td><span class="token" onclick="copyToClipboard('#DEE5EA', this)" title="Click to copy hex">#DEE5EA</span></td>
+              <td>222, 229, 234</td>
+              <td>100%</td>
+              <td>FILL</td>
+              <td><span class="token" onclick="copyToClipboard('hb/decorative/border-color/lightest', this)" title="Click to copy token name">hb/decorative/border-color/lightest</span></td>
+              <td>color=light grey</td>
+            </tr>
+            <tr>
+              <td><span class="color-swatch" style="background-color: #1E272E"></span></td>
+              <td><span class="token" onclick="copyToClipboard('#1E272E', this)" title="Click to copy hex">#1E272E</span></td>
+              <td>30, 39, 46</td>
+              <td>100%</td>
+              <td>FILL</td>
+              <td><span class="token" onclick="copyToClipboard('hb/decorative/content-color/primary', this)" title="Click to copy token name">hb/decorative/content-color/primary</span></td>
+              <td>Title, description, vector</td>
+            </tr>
+            <tr>
+              <td><span class="color-swatch" style="background-color: #1B70EE"></span></td>
+              <td><span class="token" onclick="copyToClipboard('#1B70EE', this)" title="Click to copy hex">#1B70EE</span></td>
+              <td>27, 112, 238</td>
+              <td>100%</td>
+              <td>FILL</td>
+              <td><span class="token" onclick="copyToClipboard('hb/action/content-color/secondary/default', this)" title="Click to copy token name">hb/action/content-color/secondary/default</span></td>
+              <td>vector, text</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section id="spacing" class="section">
+        <div class="section-header">
+          <div class="section-icon">📏</div>
+          <h2>Spacing (7)</h2>
+        </div>
+        <table class="specs-table">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Values</th>
+              <th>Token</th>
+              <th>Used In</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>PADDING</strong></td>
+              <td>Top: 8px, Right: 16px, Bottom: 8px, Left: 16px</td>
+              <td>-</td>
+              <td>color=blue, color=grey, color=teal, color=light teal, color=light grey</td>
+            </tr>
+            <tr>
+              <td><strong>GAP</strong></td>
+              <td>Horizontal: 0px, Vertical: -px</td>
+              <td>-</td>
+              <td>color=blue, hb-icon, color=grey, color=teal, color=light teal, color=light grey</td>
+            </tr>
+            <tr>
+              <td><strong>PADDING</strong></td>
+              <td>Top: 0px, Right: 0px, Bottom: 0px, Left: 0px</td>
+              <td>-</td>
+              <td>Frame 6356285, hb-icon, sd-button_text </td>
+            </tr>
+            <tr>
+              <td><strong>GAP</strong></td>
+              <td>Horizontal: 8px, Vertical: -px</td>
+              <td>-</td>
+              <td>Frame 6356285</td>
+            </tr>
+            <tr>
+              <td><strong>PADDING</strong></td>
+              <td>Top: 6px, Right: 6px, Bottom: 6px, Left: 6px</td>
+              <td>-</td>
+              <td>hb-icon_feedback, sd-button_icon</td>
+            </tr>
+            <tr>
+              <td><strong>GAP</strong></td>
+              <td>Horizontal: 10px, Vertical: -px</td>
+              <td>-</td>
+              <td>hb-icon_feedback, sd-button_icon</td>
+            </tr>
+            <tr>
+              <td><strong>GAP</strong></td>
+              <td>Horizontal: 4px, Vertical: -px</td>
+              <td>-</td>
+              <td>sd-button_text </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section id="border-radius" class="section">
+        <div class="section-header">
+          <div class="section-icon">⭕</div>
+          <h2>Border Radius (2)</h2>
+        </div>
+        <table class="specs-table">
+          <thead>
+            <tr>
+              <th>Value</th>
+              <th>Used In</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>3996px (uniform)</strong></td>
+              <td>hb-icon_feedback</td>
+            </tr>
+            <tr>
+              <td><strong>8px (uniform)</strong></td>
+              <td>sd-button_icon</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
