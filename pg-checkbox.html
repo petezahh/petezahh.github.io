@@ -12,17 +12,17 @@
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       line-height: 1.6;
       color: #1a1a1a;
       background: #f5f5f5;
     }
 
     .container {
-      max-width: 1400px;
+      max-width: 1800px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 280px 1fr;
+      grid-template-columns: 280px 1fr 380px;
       min-height: 100vh;
     }
 
@@ -38,13 +38,18 @@
     }
 
     .logo {
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 600;
-      color: #6366f1;
+      color: #1B1B1B;
       margin-bottom: 32px;
       display: flex;
       align-items: center;
       gap: 8px;
+    }
+    
+    .logo svg {
+      width: 32px;
+      height: 32px;
     }
 
     .nav-section {
@@ -77,7 +82,7 @@
 
     .nav-link.active {
       background: #eef2ff;
-      color: #6366f1;
+      color: #2D68FF;
       font-weight: 500;
     }
 
@@ -204,7 +209,7 @@
       padding: 2px 6px;
       border-radius: 4px;
       font-size: 13px;
-      color: #6366f1;
+      color: #2D68FF;
       cursor: pointer;
       transition: background-color 0.2s;
     }
@@ -248,9 +253,23 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       min-height: 300px;
       overflow: visible;
+      position: relative;
+    }
+    
+    .variant-main .interactive-variant {
+      position: relative;
+      flex-shrink: 0;
+      margin: 0 auto;
+      display: block;
+      max-width: 100%;
+      width: fit-content;
+    }
+    
+    .variant-main .interactive-variant > div {
+      position: relative;
     }
     
     .variant-main img {
@@ -319,14 +338,14 @@
     }
 
     .variant-thumbnail:hover {
-      border-color: #6366f1;
-      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.2);
+      border-color: #2D68FF;
+      box-shadow: 0 2px 8px rgba(45, 104, 255, 0.2);
     }
 
     .variant-thumbnail.active {
-      border-color: #6366f1;
+      border-color: #2D68FF;
       background: #eef2ff;
-      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+      box-shadow: 0 2px 8px rgba(45, 104, 255, 0.3);
     }
 
     .variant-thumbnail img {
@@ -344,7 +363,7 @@
     }
 
     .variant-thumbnail.active .variant-thumbnail-label {
-      color: #6366f1;
+      color: #2D68FF;
     }
 
     img {
@@ -362,6 +381,71 @@
       vertical-align: middle;
       margin-right: 8px;
       border-radius: 4px;
+    }
+
+    /* Interactive Variant Styles */
+    .interactive-variant {
+      position: relative;
+      overflow: visible;
+    }
+
+    .figma-layer {
+      cursor: pointer;
+      transition: outline 0.2s ease;
+    }
+
+    .figma-layer:hover {
+      outline: 2px solid #2D68FF;
+      outline-offset: 2px;
+      z-index: 10;
+    }
+    
+    .figma-layer.selected {
+      outline: 3px solid #2D68FF !important;
+      outline-offset: 2px;
+      z-index: 10;
+    }
+
+    /* Tooltip Styles */
+    .figma-tooltip {
+      position: fixed;
+      background: #1a1a1a;
+      color: #ffffff;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-family: 'Monaco', 'Courier New', monospace;
+      pointer-events: none;
+      z-index: 10000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      max-width: 300px;
+      line-height: 1.6;
+    }
+
+    .figma-tooltip::before {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      border: 6px solid transparent;
+      border-top-color: #1a1a1a;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .figma-tooltip-item {
+      margin: 4px 0;
+    }
+
+    .figma-tooltip-label {
+      color: #9ca3af;
+      margin-right: 8px;
+    }
+
+    .figma-tooltip-value {
+      color: #ffffff;
+      font-weight: 500;
     }
 
     .toast {
@@ -382,7 +466,167 @@
       to { transform: translateX(0); opacity: 1; }
     }
 
+    /* Details Panel */
+    .details-panel {
+      background: #ffffff;
+      border-left: 1px solid #e5e5e5;
+      padding: 24px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .details-panel-header {
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    .details-panel-header h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+    }
+
+    .details-panel-content {
+      flex: 1;
+    }
+
+    .details-section {
+      margin-bottom: 24px;
+    }
+
+    .details-section-title {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .details-item {
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    .details-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .details-label {
+      font-size: 12px;
+      color: #6b7280;
+      margin-bottom: 4px;
+    }
+
+    .details-value {
+      font-size: 14px;
+      color: #1a1a1a;
+      font-weight: 500;
+      word-break: break-word;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .details-value:hover {
+      opacity: 0.7;
+    }
+
+    .details-value.token {
+      font-family: 'Monaco', 'Courier New', monospace;
+      background: #f3f4f6;
+      padding: 4px 8px;
+      border-radius: 4px;
+      color: #2D68FF;
+      display: inline-block;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .details-value.token:hover {
+      background: #e5e7eb;
+    }
+
+    .variant-selector {
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid #e5e5e5;
+    }
+
+    .variant-selector-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 12px;
+    }
+
+    .variant-selector-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .variant-selector-item {
+      padding: 10px 12px;
+      background: #f9fafb;
+      border: 1px solid #e5e5e5;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 13px;
+      color: #4b5563;
+    }
+
+    .variant-selector-item:hover {
+      background: #f3f4f6;
+      border-color: #2D68FF;
+    }
+
+    .variant-selector-item.active {
+      background: #eef2ff;
+      border-color: #2D68FF;
+      color: #2D68FF;
+      font-weight: 500;
+    }
+
+    .no-selection {
+      text-align: center;
+      color: #9ca3af;
+      padding: 48px 24px;
+      font-size: 14px;
+    }
+
+    .no-selection-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+      opacity: 0.5;
+    }
+
+    .figma-layer.selected {
+      outline: 3px solid #2D68FF !important;
+      outline-offset: 2px;
+      z-index: 10;
+    }
+
     /* Responsive */
+    @media (max-width: 1400px) {
+      .container {
+        grid-template-columns: 280px 1fr;
+      }
+
+      .details-panel {
+        display: none;
+      }
+    }
+
     @media (max-width: 1024px) {
       .container {
         grid-template-columns: 1fr;
@@ -403,18 +647,18 @@
       toast.className = 'toast';
       toast.textContent = message;
       document.body.appendChild(toast);
-      setTimeout(() => {
+      setTimeout(function() {
         toast.style.animation = 'slideIn 0.3s ease-out reverse';
-        setTimeout(() => toast.remove(), 300);
+        setTimeout(function() { toast.remove(); }, 300);
       }, 2000);
     }
 
     function copyToClipboard(text, element) {
-      navigator.clipboard.writeText(text).then(() => {
+      navigator.clipboard.writeText(text).then(function() {
         element.classList.add('copied');
         showToast('Copied to clipboard!');
-        setTimeout(() => element.classList.remove('copied'), 1000);
-      }).catch(err => {
+        setTimeout(function() { element.classList.remove('copied'); }, 1000);
+      }).catch(function(err) {
         console.error('Failed to copy:', err);
         showToast('Failed to copy');
       });
@@ -422,52 +666,486 @@
 
     // Smooth scrolling for anchor links
     document.addEventListener('DOMContentLoaded', function() {
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      const anchors = document.querySelectorAll('a[href^="#"]');
+      for (let a = 0; a < anchors.length; a++) {
+        const anchor = anchors[a];
         anchor.addEventListener('click', function (e) {
           e.preventDefault();
           const target = document.querySelector(this.getAttribute('href'));
           if (target) {
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             // Update active nav link
-            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            const navLinks = document.querySelectorAll('.nav-link');
+            for (let n = 0; n < navLinks.length; n++) {
+              navLinks[n].classList.remove('active');
+            }
             this.classList.add('active');
           }
         });
-      });
+      }
 
-      // Variant thumbnail click handler
-      document.querySelectorAll('.variant-thumbnail').forEach(thumbnail => {
+      // Details panel functionality
+      let selectedLayer = null;
+      let currentVariantId = null;
+      
+      function updateDetailsPanel(data) {
+        const panel = document.getElementById('details-panel-content');
+        if (!panel) return;
+        
+        if (!data) {
+          panel.innerHTML = '<div class="no-selection"><div class="no-selection-icon">👆</div><div>Click on any element to see its details</div></div>';
+          return;
+        }
+        
+        let html = '';
+        
+        // Basic info
+        html += '<div class="details-section"><div class="details-section-title">Element</div>';
+        html += '<div class="details-item"><div class="details-label">Name</div><div class="details-value">' + escapeHtmlHelper(data.name || 'Unknown') + '</div></div>';
+        html += '<div class="details-item"><div class="details-label">Type</div><div class="details-value">' + escapeHtmlHelper(data.type || 'Unknown') + '</div></div>';
+        if (data.size) {
+          html += '<div class="details-item"><div class="details-label">Size</div><div class="details-value">' + escapeHtmlHelper(data.size) + '</div></div>';
+        }
+        html += '</div>';
+        
+        // Colors
+        if (data.color || data.colorToken) {
+          html += '<div class="details-section"><div class="details-section-title">Color</div>';
+          if (data.color) {
+            html += '<div class="details-item"><div class="details-label">Value</div><div class="details-value" style="display: flex; align-items: center; gap: 8px;"><span style="display: inline-block; width: 20px; height: 20px; background: ' + escapeHtmlHelper(data.color) + '; border: 1px solid #e5e5e5; border-radius: 4px;"></span>' + escapeHtmlHelper(data.color) + '</div></div>';
+          }
+          if (data.colorToken) {
+            html += '<div class="details-item"><div class="details-label">Token</div><div class="details-value token">' + escapeHtmlHelper(data.colorToken) + '</div></div>';
+          }
+          html += '</div>';
+        }
+        
+        // Typography
+        if (data.fontFamily || data.fontSize || data.fontWeight || data.typographyToken) {
+          html += '<div class="details-section"><div class="details-section-title">Typography</div>';
+          if (data.fontFamily) {
+            html += '<div class="details-item"><div class="details-label">Font Family</div><div class="details-value">' + escapeHtmlHelper(data.fontFamily) + '</div></div>';
+          }
+          if (data.fontSize) {
+            html += '<div class="details-item"><div class="details-label">Font Size</div><div class="details-value">' + escapeHtmlHelper(data.fontSize) + '</div></div>';
+          }
+          if (data.fontWeight) {
+            html += '<div class="details-item"><div class="details-label">Font Weight</div><div class="details-value">' + escapeHtmlHelper(String(data.fontWeight)) + '</div></div>';
+          }
+          if (data.lineHeight) {
+            html += '<div class="details-item"><div class="details-label">Line Height</div><div class="details-value">' + escapeHtmlHelper(String(data.lineHeight)) + '</div></div>';
+          }
+          if (data.letterSpacing) {
+            html += '<div class="details-item"><div class="details-label">Letter Spacing</div><div class="details-value">' + escapeHtmlHelper(String(data.letterSpacing)) + '</div></div>';
+          }
+          if (data.typographyToken) {
+            html += '<div class="details-item"><div class="details-label">Token</div><div class="details-value token">' + escapeHtmlHelper(data.typographyToken) + '</div></div>';
+          }
+          html += '</div>';
+        }
+        
+        // Layout & Spacing
+        if (data.layout || data.padding || data.paddingTop || data.paddingRight || data.paddingBottom || data.paddingLeft || data.gap || data.itemSpacing || data.spacingToken) {
+          html += '<div class="details-section"><div class="details-section-title">Layout & Spacing</div>';
+          if (data.layout) {
+            html += '<div class="details-item"><div class="details-label">Layout Direction</div><div class="details-value">' + escapeHtmlHelper(String(data.layout)) + '</div></div>';
+          }
+          if (data.padding) {
+            html += '<div class="details-item"><div class="details-label">Padding (All)</div><div class="details-value">' + escapeHtmlHelper(String(data.padding)) + '</div></div>';
+          } else {
+            if (data.paddingTop) {
+              html += '<div class="details-item"><div class="details-label">Padding Top</div><div class="details-value">' + escapeHtmlHelper(String(data.paddingTop)) + '</div></div>';
+            }
+            if (data.paddingRight) {
+              html += '<div class="details-item"><div class="details-label">Padding Right</div><div class="details-value">' + escapeHtmlHelper(String(data.paddingRight)) + '</div></div>';
+            }
+            if (data.paddingBottom) {
+              html += '<div class="details-item"><div class="details-label">Padding Bottom</div><div class="details-value">' + escapeHtmlHelper(String(data.paddingBottom)) + '</div></div>';
+            }
+            if (data.paddingLeft) {
+              html += '<div class="details-item"><div class="details-label">Padding Left</div><div class="details-value">' + escapeHtmlHelper(String(data.paddingLeft)) + '</div></div>';
+            }
+          }
+          if (data.gap || data.itemSpacing) {
+            html += '<div class="details-item"><div class="details-label">Gap / Item Spacing</div><div class="details-value">' + escapeHtmlHelper(String(data.gap || data.itemSpacing)) + '</div></div>';
+          }
+          if (data.spacingToken) {
+            html += '<div class="details-item"><div class="details-label">Spacing Token</div><div class="details-value token">' + escapeHtmlHelper(String(data.spacingToken)) + '</div></div>';
+          }
+          html += '</div>';
+        }
+        
+        // Other properties
+        const otherProps = ['stroke', 'borderRadius', 'effects', 'text'];
+        const hasOther = otherProps.some(function(prop) { return data[prop]; });
+        if (hasOther) {
+          html += '<div class="details-section"><div class="details-section-title">Other</div>';
+          if (data.stroke) {
+            html += '<div class="details-item"><div class="details-label">Stroke</div><div class="details-value">' + escapeHtmlHelper(String(data.stroke)) + '</div></div>';
+          }
+          if (data.borderRadius) {
+            html += '<div class="details-item"><div class="details-label">Border Radius</div><div class="details-value">' + escapeHtmlHelper(String(data.borderRadius)) + '</div></div>';
+          }
+          if (data.effects) {
+            html += '<div class="details-item"><div class="details-label">Effects</div><div class="details-value">' + escapeHtmlHelper(String(data.effects)) + '</div></div>';
+          }
+          if (data.text) {
+            html += '<div class="details-item"><div class="details-label">Text</div><div class="details-value">' + escapeHtmlHelper(String(data.text)) + '</div></div>';
+          }
+          html += '</div>';
+        }
+        
+        panel.innerHTML = html;
+        
+        // Add click handlers to all detail values for copying
+        const detailValues = panel.querySelectorAll('.details-value');
+        for (let i = 0; i < detailValues.length; i++) {
+          const valueEl = detailValues[i];
+          valueEl.addEventListener('click', function() {
+            const textToCopy = this.textContent || this.innerText;
+            copyToClipboard(textToCopy.trim(), this);
+          });
+        }
+      }
+      
+      function selectLayer(element, data) {
+        // Remove previous selection
+        if (selectedLayer) {
+          selectedLayer.classList.remove('selected');
+        }
+        
+        // Add selection to current element
+        selectedLayer = element;
+        element.classList.add('selected');
+        
+        // Update details panel
+        updateDetailsPanel(data);
+      }
+      
+      // Helper function for escaping HTML (if not already defined globally)
+      function escapeHtmlHelper(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      }
+      
+      // Old tooltip functionality (removed)
+      let tooltip = null;
+      
+      function createTooltip(data) {
+        let html = '<div class="figma-tooltip">';
+        for (const [key, value] of Object.entries(data)) {
+          if (value !== undefined && value !== null) {
+            html += '<div class="figma-tooltip-item"><span class="figma-tooltip-label">' + key + ':</span><span class="figma-tooltip-value">' + value + '</span></div>';
+          }
+        }
+        html += '</div>';
+        return html;
+      }
+
+      function showTooltip(element, data) {
+        if (tooltip) {
+          tooltip.remove();
+        }
+        
+        tooltip = document.createElement('div');
+        tooltip.innerHTML = createTooltip(data);
+        tooltip = tooltip.querySelector('.figma-tooltip');
+        document.body.appendChild(tooltip);
+        
+        const rect = element.getBoundingClientRect();
+        const tooltipRect = tooltip.getBoundingClientRect();
+        let left = rect.left + (rect.width / 2) - (tooltipRect.width / 2);
+        let top = rect.top - tooltipRect.height - 12;
+        
+        // Adjust if tooltip goes off screen
+        if (left < 10) left = 10;
+        if (left + tooltipRect.width > window.innerWidth - 10) {
+          left = window.innerWidth - tooltipRect.width - 10;
+        }
+        if (top < 10) {
+          top = rect.bottom + 12;
+          tooltip.style.transform = 'translateY(0)';
+          const before = tooltip.querySelector('::before') || tooltip;
+          if (before) {
+            before.style.borderTopColor = 'transparent';
+            before.style.borderBottomColor = '#1a1a1a';
+            before.style.top = '-12px';
+            before.style.bottom = 'auto';
+          }
+        }
+        
+        tooltip.style.left = left + 'px';
+        tooltip.style.top = top + 'px';
+      }
+
+      function hideTooltip() {
+        if (tooltip) {
+          tooltip.remove();
+          tooltip = null;
+        }
+      }
+
+      // Track which elements already have handlers to avoid duplicates
+      const elementsWithHandlers = new WeakSet();
+      
+      // Add click handlers to all figma-layer elements
+      function attachLayerHandlers() {
+        const layers = document.querySelectorAll('.figma-layer');
+        console.log('[dokket] attachLayerHandlers: Found', layers.length, 'layers');
+        
+        for (let i = 0; i < layers.length; i++) {
+          const layer = layers[i];
+          const element = layer;
+          
+          // Skip if already has handlers
+          if (elementsWithHandlers.has(element)) {
+            continue;
+          }
+          
+          const tooltipData = element.getAttribute('data-tooltip');
+          if (!tooltipData) {
+            console.warn('[dokket] Layer missing data-tooltip:', element.id, element.className);
+            continue;
+          }
+          
+          try {
+            const data = JSON.parse(tooltipData);
+            
+            // Add click handler
+            element.addEventListener('click', function(e) {
+              e.stopPropagation();
+              e.preventDefault();
+              console.log('[dokket] Layer clicked:', data.name, data);
+              selectLayer(element, data);
+            });
+            
+            // Add hover effect (visual only, no tooltip)
+            element.addEventListener('mouseenter', function() {
+              if (element !== selectedLayer) {
+                element.style.outline = '2px solid #2D68FF';
+                element.style.outlineOffset = '2px';
+              }
+            });
+            
+            element.addEventListener('mouseleave', function() {
+              if (element !== selectedLayer) {
+                element.style.outline = '';
+                element.style.outlineOffset = '';
+              }
+            });
+            
+            // Mark as having handlers
+            elementsWithHandlers.add(element);
+            console.log('[dokket] Attached handlers to:', element.id || element.className);
+          } catch (e) {
+            console.error('[dokket] Error parsing tooltip data for', element.id, ':', e, 'Data:', tooltipData);
+          }
+        }
+      }
+      
+      // Initialize handlers with retry logic
+      function initializeHandlers() {
+        const maxRetries = 5;
+        let retries = 0;
+        
+        function tryAttach() {
+          const hasLayers = document.querySelectorAll('.figma-layer').length > 0;
+          const hasVariantData = window.variantData && Object.keys(window.variantData).length > 0;
+          
+          console.log('[dokket] Initialization attempt', retries + 1, ':', JSON.stringify({
+            hasLayers: hasLayers,
+            hasVariantData: hasVariantData,
+            variantDataKeys: window.variantData ? Object.keys(window.variantData).length : 0
+          }));
+          
+          if (hasLayers && hasVariantData) {
+            attachLayerHandlers();
+            return true;
+          }
+          
+          retries++;
+          if (retries < maxRetries) {
+            setTimeout(tryAttach, 200);
+            return false;
+          } else {
+            console.warn('[dokket] Failed to initialize handlers after', maxRetries, 'attempts');
+            return false;
+          }
+        }
+        
+        tryAttach();
+      }
+      
+      // Start initialization
+      initializeHandlers();
+      
+      // Update variant selector in details panel
+      function updateVariantSelector() {
+        const selector = document.getElementById('variant-selector-list');
+        if (!selector || !window.variantData) return;
+        
+        let html = '';
+        const variantKeys = Object.keys(window.variantData);
+        for (let i = 0; i < variantKeys.length; i++) {
+          const variantId = variantKeys[i];
+          const variant = window.variantData[variantId];
+          const isActive = currentVariantId === variantId || (currentVariantId === null && i === 0);
+          html += '<div class="variant-selector-item' + (isActive ? ' active' : '') + '" data-variant-id="' + escapeHtmlHelper(variantId) + '">' + escapeHtmlHelper(variant.name) + '</div>';
+        }
+        selector.innerHTML = html;
+        
+        // Add click handlers
+        const selectorItems = selector.querySelectorAll('.variant-selector-item');
+        for (let j = 0; j < selectorItems.length; j++) {
+          const item = selectorItems[j];
+          item.addEventListener('click', function() {
+            const variantId = this.getAttribute('data-variant-id');
+            if (!variantId) return;
+            
+            // Find and click the corresponding thumbnail
+            const thumbnail = document.querySelector('.variant-thumbnail[data-variant-id="' + variantId + '"]');
+            if (thumbnail) {
+              thumbnail.click();
+            }
+          });
+        }
+      }
+      
+      // Initialize variant selector
+      if (window.variantData && Object.keys(window.variantData).length > 0) {
+        const firstVariantId = Object.keys(window.variantData)[0];
+        currentVariantId = firstVariantId;
+      }
+      updateVariantSelector();
+
+      // Interactive mode toggle
+      const toggle = document.getElementById('interactive-mode-toggle');
+      if (toggle) {
+        toggle.addEventListener('change', function() {
+          const isInteractive = this.checked;
+          // Update all variants' display mode
+          const variantElements = document.querySelectorAll('.variant-interactive, .variant-screenshot');
+          for (let v = 0; v < variantElements.length; v++) {
+            const element = variantElements[v];
+            if (element.classList.contains('variant-interactive')) {
+              element.style.display = isInteractive ? 'block' : 'none';
+            } else if (element.classList.contains('variant-screenshot')) {
+              element.style.display = isInteractive ? 'none' : 'block';
+            }
+          }
+        });
+        
+        // Set initial state - check if we have both interactive and screenshot
+        const hasInteractive = document.querySelector('.variant-interactive') !== null;
+        const hasScreenshot = document.querySelector('.variant-screenshot') !== null;
+        if (!hasInteractive && hasScreenshot) {
+          toggle.checked = false;
+          toggle.dispatchEvent(new Event('change'));
+        }
+      }
+
+      // Variant thumbnail click handler - now uses interactive HTML
+      const thumbnails = document.querySelectorAll('.variant-thumbnail');
+      for (let t = 0; t < thumbnails.length; t++) {
+        const thumbnail = thumbnails[t];
         thumbnail.addEventListener('click', function() {
           const variantId = this.getAttribute('data-variant-id');
-          if (!variantId) return;
-
-          const variantData = window.variantData && window.variantData[variantId];
-          if (!variantData) return;
-
-          const mainDisplay = document.querySelector('.variant-main');
-          if (!mainDisplay) return;
-
-          const mainImg = mainDisplay.querySelector('img');
-          const mainProps = mainDisplay.querySelector('.variant-main-props');
-          const placeholder = mainDisplay.querySelector('.variant-placeholder');
-
-          if (variantData.screenshot && mainImg) {
-            mainImg.src = variantData.screenshot;
-            mainImg.alt = variantData.name;
-            mainImg.style.display = 'block';
-            if (placeholder) placeholder.style.display = 'none';
-          } else if (mainImg && placeholder) {
-            mainImg.style.display = 'none';
-            placeholder.style.display = 'block';
-            placeholder.textContent = 'No preview';
+          console.log('[dokket] Thumbnail clicked:', variantId);
+          
+          if (!variantId) {
+            console.warn('[dokket] No variant ID on thumbnail');
+            return;
           }
 
-          // Update properties display (removed mainLabel since we only show props)
+          const variantData = window.variantData && window.variantData[variantId];
+          if (!variantData) {
+            console.warn('[dokket] No variant data for:', variantId, 'Available:', window.variantData ? Object.keys(window.variantData) : 'none');
+            return;
+          }
+          
+          console.log('[dokket] Switching to variant:', variantData.name);
+
+          const mainDisplay = document.querySelector('#variant-main-display');
+          if (!mainDisplay) return;
+
+          // Remove existing content
+          const existingContent = mainDisplay.querySelectorAll('.variant-interactive, .variant-screenshot, .variant-placeholder');
+          for (let e = 0; e < existingContent.length; e++) {
+            existingContent[e].remove();
+          }
+
+          const isInteractive = toggle ? toggle.checked : true;
+          const screenshot = window.variantScreenshots && window.variantScreenshots[variantId];
+          
+          // Find the props element to insert before it (so component appears above props)
+          const propsElement = mainDisplay.querySelector('.variant-main-props');
+          const insertBeforeElement = propsElement || mainDisplay.firstChild;
+
+          // Insert content based on toggle state
+          if (isInteractive && variantData.renderedHTML) {
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = variantData.renderedHTML;
+            const renderedContent = tempDiv.firstElementChild;
+            if (renderedContent) {
+              renderedContent.classList.add('variant-interactive');
+              renderedContent.style.display = isInteractive ? 'block' : 'none';
+              mainDisplay.insertBefore(renderedContent, insertBeforeElement);
+              
+              // Re-attach layer handlers after a brief delay to ensure DOM is updated
+              setTimeout(function() {
+                attachLayerHandlers();
+              }, 50);
+              
+              // Clear selection when switching variants
+              if (selectedLayer) {
+                selectedLayer.classList.remove('selected');
+                selectedLayer = null;
+              }
+              updateDetailsPanel(null);
+            }
+          }
+          
+          // Also add screenshot version if available
+          if (screenshot) {
+            const screenshotDiv = document.createElement('div');
+            screenshotDiv.className = 'variant-screenshot';
+            screenshotDiv.id = 'variant-screenshot-' + variantId;
+            screenshotDiv.style.display = isInteractive ? 'none' : 'block';
+            screenshotDiv.innerHTML = '<img src="' + screenshot + '" alt="' + escapeHtmlHelper(variantData.name) + '" style="max-width: 100%; height: auto;" />';
+            mainDisplay.insertBefore(screenshotDiv, insertBeforeElement);
+          }
+          
+          // If no content was added, show placeholder
+          if (!mainDisplay.querySelector('.variant-interactive, .variant-screenshot')) {
+            const placeholder = document.createElement('div');
+            placeholder.className = 'variant-placeholder';
+            placeholder.style.cssText = 'color: #9ca3af; padding: 20px;';
+            placeholder.textContent = 'No preview available';
+            mainDisplay.insertBefore(placeholder, insertBeforeElement);
+          }
+          
+          // Update toggle to show/hide based on what's available
+          if (toggle) {
+            const hasInteractive = !!variantData.renderedHTML;
+            const hasScreenshot = !!screenshot;
+            toggle.disabled = !hasInteractive || !hasScreenshot;
+            if (!hasInteractive && hasScreenshot) {
+              toggle.checked = false;
+              toggle.dispatchEvent(new Event('change'));
+            }
+          }
+
+          // Update properties display
+          const mainProps = mainDisplay.querySelector('.variant-main-props');
           if (mainProps) {
             if (variantData.properties && Object.keys(variantData.properties).length > 0) {
-              mainProps.textContent = Object.entries(variantData.properties)
-                .map(([key, value]) => key + '=' + value)
-                .join(', ');
+              const propEntries = Object.entries(variantData.properties);
+              const propStrings = [];
+              for (let p = 0; p < propEntries.length; p++) {
+                propStrings.push(propEntries[p][0] + '=' + propEntries[p][1]);
+              }
+              mainProps.textContent = propStrings.join(', ');
               mainProps.style.display = 'block';
               mainProps.style.textTransform = 'lowercase';
             } else {
@@ -478,12 +1156,17 @@
           }
 
           // Update active thumbnail
-          document.querySelectorAll('.variant-thumbnail').forEach(thumb => {
-            thumb.classList.remove('active');
-          });
+          const allThumbnails = document.querySelectorAll('.variant-thumbnail');
+          for (let a = 0; a < allThumbnails.length; a++) {
+            allThumbnails[a].classList.remove('active');
+          }
           this.classList.add('active');
+          
+          // Update current variant ID and selector
+          currentVariantId = variantId;
+          updateVariantSelector();
         });
-      });
+      }
     });
   </script>
 </head>
@@ -492,6 +1175,10 @@
     <!-- Sidebar Navigation -->
     <aside class="sidebar">
       <div class="logo">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z" fill="#1B1B1B"/>
+          <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" fill="#ffffff"/>
+        </svg>
         <a href="#" onclick="event.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'}); return false;" style="text-decoration: none; color: inherit;">
           pg-checkbox
         </a>
@@ -513,7 +1200,7 @@
     <main class="main-content">
       <!-- Header -->
       <header class="header">
-        <a href="library.html" class="library-link" style="display: inline-flex; align-items: center; gap: 6px; color: #6366f1; text-decoration: none; font-size: 14px; margin-bottom: 16px; transition: opacity 0.2s;">
+        <a href="library.html" class="library-link" style="display: inline-flex; align-items: center; gap: 6px; color: #2D68FF; text-decoration: none; font-size: 14px; margin-bottom: 16px; transition: opacity 0.2s;">
           <span style="font-size: 18px;">←</span>
           <span>Component Library</span>
         </a>
@@ -524,7 +1211,7 @@
             <strong>Type:</strong> Component Set
           </div>
           <div class="meta-item">
-            <strong>Last Updated:</strong> 12/12/2025, 5:13:29 PM
+            <strong>Last Updated:</strong> 12/17/2025, 6:25:16 PM
           </div>
           
         </div>
@@ -533,63 +1220,79 @@
         <div class="section-header">
           <div class="section-icon">🎨</div>
           <h2>Variants (12)</h2>
+          <div style="margin-left: auto; display: flex; align-items: center; gap: 8px;">
+            <label style="display: flex; align-items: center; gap: 6px; font-size: 14px; color: #6b7280; cursor: pointer;" title="Toggle between interactive HTML and screenshot view">
+              <input type="checkbox" id="interactive-mode-toggle" checked style="cursor: pointer;" />
+              <span>Interactive Mode</span>
+            </label>
+          </div>
         </div>
         <div class="variant-gallery">
           <!-- Main Display -->
-          <div class="variant-main">
-            <img src="assets/2604-687304.png" alt="flavor=rest, status=disabled" />
-            <div class="variant-placeholder" style="display: none; color: #9ca3af; padding: 20px;">No preview</div>
+          <div class="variant-main" id="variant-main-display">
+            <div class="variant-interactive" id="variant-interactive-2604:687304">
+
+    <div id="variant-2604:687304" class="interactive-variant" style="position: relative; width: 142px; height: 24px; margin: 0 auto;">
+  <div id="variant-2604:687304-2604:687304" class="figma-layer" style="position: absolute; left: 20.5px; top: 495px; width: 142px; height: 24px; border-radius: 0px; display: flex; flex-direction: row; padding-left: 0px; padding-right: 0px; padding-top: 0px; padding-bottom: 0px; gap: 8px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden" data-tooltip='{"name":"flavor=rest, status=disabled","type":"COMPONENT","size":"142 × 24","borderRadius":"0px","layout":"HORIZONTAL","gap":"8px","itemSpacing":"8px"}'>
+    <div id="variant-2604:687304-2604:687305" class="figma-layer" style="position: relative; width: 24px; height: 24px; border: 1px solid #8293a6; border-radius: 4px; display: flex; flex-direction: row; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; gap: 10px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden" data-tooltip='{"name":"._icon_checkbox","type":"INSTANCE","size":"24 × 24","stroke":"#8293a6 1px","borderRadius":"4px","layout":"HORIZONTAL","padding":"2px 2px 2px 2px","paddingTop":"2px","paddingRight":"2px","paddingBottom":"2px","paddingLeft":"2px","gap":"10px","itemSpacing":"10px"}'></div>
+    <div id="variant-2604:687304-2604:687306" class="figma-layer" style="position: relative; width: 110px; height: 24px; display: block; display: block; background-color: transparent; font-size: 16px; font-family: Inter, sans-serif; font-weight: 400; line-height: 24px; letter-spacing: 0%; text-align: left; width: auto; white-space: nowrap; color: #667085" data-tooltip='{"name":"Label","type":"TEXT","size":"110 × 24","position":"(0, 0)","color":"#667085","colorToken":"Colors/Text/text-disabled","fontFamily":"Inter","fontSize":"16px","fontWeight":400,"lineHeight":"24px","letterSpacing":"0%","typographyToken":"hb/decorative-type/body/regular","text":"Checkbox text"}'>Checkbox text</div>
+  </div>
+    </div>
+              </div>
+            <div class="variant-screenshot" id="variant-screenshot-2604:687304" style="display: none;">
+              <img src="assets/2604-687304.png" alt="flavor=rest, status=disabled" style="max-width: 100%; height: auto;" />
+            </div>
             <div class="variant-main-props" style="margin-top: 12px;">flavor=rest, status=disabled</div>
           </div>
 
           <!-- Thumbnails -->
           <div class="variant-thumbnails">
             <div class="variant-thumbnail active" data-variant-id="2604:687304">
-              <img src="assets/2604-687304.png" alt="flavor=rest, status=disabled" />
+              <img src="assets/2604-687304.png" alt="flavor=rest, status=disabled" style="max-width: 120px; width: auto; height: auto; object-fit: contain; background: #f9fafb; padding: 8px; border-radius: 4px;" />
               <div class="variant-thumbnail-label">flavor=rest, status=disabled</div>
             </div>
             <div class="variant-thumbnail " data-variant-id="2604:687307">
-              <img src="assets/2604-687307.png" alt="flavor=rest, status=hover" />
+              <img src="assets/2604-687307.png" alt="flavor=rest, status=hover" style="max-width: 120px; width: auto; height: auto; object-fit: contain; background: #f9fafb; padding: 8px; border-radius: 4px;" />
               <div class="variant-thumbnail-label">flavor=rest, status=hover</div>
             </div>
             <div class="variant-thumbnail " data-variant-id="2604:687310">
-              <img src="assets/2604-687310.png" alt="flavor=rest, status=focused" />
+              <img src="assets/2604-687310.png" alt="flavor=rest, status=focused" style="max-width: 120px; width: auto; height: auto; object-fit: contain; background: #f9fafb; padding: 8px; border-radius: 4px;" />
               <div class="variant-thumbnail-label">flavor=rest, status=focused</div>
             </div>
             <div class="variant-thumbnail " data-variant-id="2604:687313">
-              <img src="assets/2604-687313.png" alt="flavor=rest, status=rest" />
+              <img src="assets/2604-687313.png" alt="flavor=rest, status=rest" style="max-width: 120px; width: auto; height: auto; object-fit: contain; background: #f9fafb; padding: 8px; border-radius: 4px;" />
               <div class="variant-thumbnail-label">flavor=rest, status=rest</div>
             </div>
             <div class="variant-thumbnail " data-variant-id="2604:687316">
-              <img src="assets/2604-687316.png" alt="flavor=indeterminant, status=disabled" />
+              <img src="assets/2604-687316.png" alt="flavor=indeterminant, status=disabled" style="max-width: 120px; width: auto; height: auto; object-fit: contain; background: #f9fafb; padding: 8px; border-radius: 4px;" />
               <div class="variant-thumbnail-label">flavor=indeterminant, status=disabled</div>
             </div>
             <div class="variant-thumbnail " data-variant-id="2604:687319">
-              <img src="assets/2604-687319.png" alt="flavor=indeterminant, status=hover" />
+              <img src="assets/2604-687319.png" alt="flavor=indeterminant, status=hover" style="max-width: 120px; width: auto; height: auto; object-fit: contain; background: #f9fafb; padding: 8px; border-radius: 4px;" />
               <div class="variant-thumbnail-label">flavor=indeterminant, status=hover</div>
             </div>
             <div class="variant-thumbnail " data-variant-id="2604:687322">
-              <img src="assets/2604-687322.png" alt="flavor=indeterminant, status=focused" />
+              <img src="assets/2604-687322.png" alt="flavor=indeterminant, status=focused" style="max-width: 120px; width: auto; height: auto; object-fit: contain; background: #f9fafb; padding: 8px; border-radius: 4px;" />
               <div class="variant-thumbnail-label">flavor=indeterminant, status=focused</div>
             </div>
             <div class="variant-thumbnail " data-variant-id="2604:687325">
-              <img src="assets/2604-687325.png" alt="flavor=indeterminant, status=rest" />
+              <img src="assets/2604-687325.png" alt="flavor=indeterminant, status=rest" style="max-width: 120px; width: auto; height: auto; object-fit: contain; background: #f9fafb; padding: 8px; border-radius: 4px;" />
               <div class="variant-thumbnail-label">flavor=indeterminant, status=rest</div>
             </div>
             <div class="variant-thumbnail " data-variant-id="2604:687328">
-              <img src="assets/2604-687328.png" alt="flavor=selected, status=disabled" />
+              <img src="assets/2604-687328.png" alt="flavor=selected, status=disabled" style="max-width: 120px; width: auto; height: auto; object-fit: contain; background: #f9fafb; padding: 8px; border-radius: 4px;" />
               <div class="variant-thumbnail-label">flavor=selected, status=disabled</div>
             </div>
             <div class="variant-thumbnail " data-variant-id="2604:687331">
-              <img src="assets/2604-687331.png" alt="flavor=selected, status=hover" />
+              <img src="assets/2604-687331.png" alt="flavor=selected, status=hover" style="max-width: 120px; width: auto; height: auto; object-fit: contain; background: #f9fafb; padding: 8px; border-radius: 4px;" />
               <div class="variant-thumbnail-label">flavor=selected, status=hover</div>
             </div>
             <div class="variant-thumbnail " data-variant-id="2604:687334">
-              <img src="assets/2604-687334.png" alt="flavor=selected, status=focused" />
+              <img src="assets/2604-687334.png" alt="flavor=selected, status=focused" style="max-width: 120px; width: auto; height: auto; object-fit: contain; background: #f9fafb; padding: 8px; border-radius: 4px;" />
               <div class="variant-thumbnail-label">flavor=selected, status=focused</div>
             </div>
             <div class="variant-thumbnail " data-variant-id="2604:687337">
-              <img src="assets/2604-687337.png" alt="flavor=selected, status=rest" />
+              <img src="assets/2604-687337.png" alt="flavor=selected, status=rest" style="max-width: 120px; width: auto; height: auto; object-fit: contain; background: #f9fafb; padding: 8px; border-radius: 4px;" />
               <div class="variant-thumbnail-label">flavor=selected, status=rest</div>
             </div>
           </div>
@@ -598,7 +1301,16 @@
 
       <script>
         // Store variant data for JavaScript access
-        window.variantData = {"2604:687304":{"name":"flavor=rest, status=disabled","screenshot":"assets/2604-687304.png","properties":{"flavor":"rest","status":"disabled"}},"2604:687307":{"name":"flavor=rest, status=hover","screenshot":"assets/2604-687307.png","properties":{"flavor":"rest","status":"hover"}},"2604:687310":{"name":"flavor=rest, status=focused","screenshot":"assets/2604-687310.png","properties":{"flavor":"rest","status":"focused"}},"2604:687313":{"name":"flavor=rest, status=rest","screenshot":"assets/2604-687313.png","properties":{"flavor":"rest","status":"rest"}},"2604:687316":{"name":"flavor=indeterminant, status=disabled","screenshot":"assets/2604-687316.png","properties":{"flavor":"indeterminant","status":"disabled"}},"2604:687319":{"name":"flavor=indeterminant, status=hover","screenshot":"assets/2604-687319.png","properties":{"flavor":"indeterminant","status":"hover"}},"2604:687322":{"name":"flavor=indeterminant, status=focused","screenshot":"assets/2604-687322.png","properties":{"flavor":"indeterminant","status":"focused"}},"2604:687325":{"name":"flavor=indeterminant, status=rest","screenshot":"assets/2604-687325.png","properties":{"flavor":"indeterminant","status":"rest"}},"2604:687328":{"name":"flavor=selected, status=disabled","screenshot":"assets/2604-687328.png","properties":{"flavor":"selected","status":"disabled"}},"2604:687331":{"name":"flavor=selected, status=hover","screenshot":"assets/2604-687331.png","properties":{"flavor":"selected","status":"hover"}},"2604:687334":{"name":"flavor=selected, status=focused","screenshot":"assets/2604-687334.png","properties":{"flavor":"selected","status":"focused"}},"2604:687337":{"name":"flavor=selected, status=rest","screenshot":"assets/2604-687337.png","properties":{"flavor":"selected","status":"rest"}}};
+        window.variantData = {"2604:687304":{"name":"flavor=rest, status=disabled","layerStructure":{"id":"2604:687304","name":"flavor=rest, status=disabled","type":"COMPONENT","x":20.5,"y":495,"width":142,"height":24,"opacity":1,"visible":true,"fills":[],"strokes":[],"cornerRadius":0,"effects":[],"layoutMode":"HORIZONTAL","paddingLeft":0,"paddingRight":0,"paddingTop":0,"paddingBottom":0,"itemSpacing":8,"primaryAxisAlignItems":"MIN","counterAxisAlignItems":"CENTER","primaryAxisSizingMode":"AUTO","counterAxisSizingMode":"AUTO","constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"2604:687305","name":"._icon_checkbox","type":"INSTANCE","x":0,"y":0,"width":24,"height":24,"opacity":1,"visible":true,"fills":[],"strokes":[{"type":"SOLID","color":{"r":0.5098039507865906,"g":0.5764706134796143,"b":0.6509804129600525},"opacity":1,"strokeWeight":1}],"cornerRadius":4,"effects":[],"layoutMode":"HORIZONTAL","paddingLeft":2,"paddingRight":2,"paddingTop":2,"paddingBottom":2,"itemSpacing":10,"primaryAxisAlignItems":"MIN","counterAxisAlignItems":"CENTER","primaryAxisSizingMode":"AUTO","counterAxisSizingMode":"AUTO","constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"layoutPositioning":"AUTO"},{"id":"2604:687306","name":"Label","type":"TEXT","x":0,"y":0,"width":110,"height":24,"opacity":1,"visible":true,"fills":[{"type":"SOLID","color":{"r":0.4000000059604645,"g":0.43921568989753723,"b":0.5215686559677124},"opacity":1}],"colorToken":"Colors/Text/text-disabled","strokes":[],"effects":[],"characters":"Checkbox text","fontSize":16,"fontFamily":"Inter","fontWeight":400,"lineHeight":{"unit":"PIXELS","value":24},"letterSpacing":{"unit":"PERCENT","value":0},"textAlignHorizontal":"LEFT","textAlignVertical":"TOP","textAutoResize":"WIDTH_AND_HEIGHT","typographyToken":"hb/decorative-type/body/regular","constraints":{"horizontal":"SCALE","vertical":"SCALE"},"rotation":0,"layoutPositioning":"AUTO"}]},"renderedHTML":"\n    <div id=\"variant-2604:687304\" class=\"interactive-variant\" style=\"position: relative; width: 142px; height: 24px; margin: 0 auto;\">\n  <div id=\"variant-2604:687304-2604:687304\" class=\"figma-layer\" style=\"position: absolute; left: 20.5px; top: 495px; width: 142px; height: 24px; border-radius: 0px; display: flex; flex-direction: row; padding-left: 0px; padding-right: 0px; padding-top: 0px; padding-bottom: 0px; gap: 8px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden\" data-tooltip='{\"name\":\"flavor=rest, status=disabled\",\"type\":\"COMPONENT\",\"size\":\"142 × 24\",\"borderRadius\":\"0px\",\"layout\":\"HORIZONTAL\",\"gap\":\"8px\",\"itemSpacing\":\"8px\"}'>\n    <div id=\"variant-2604:687304-2604:687305\" class=\"figma-layer\" style=\"position: relative; width: 24px; height: 24px; border: 1px solid #8293a6; border-radius: 4px; display: flex; flex-direction: row; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; gap: 10px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden\" data-tooltip='{\"name\":\"._icon_checkbox\",\"type\":\"INSTANCE\",\"size\":\"24 × 24\",\"stroke\":\"#8293a6 1px\",\"borderRadius\":\"4px\",\"layout\":\"HORIZONTAL\",\"padding\":\"2px 2px 2px 2px\",\"paddingTop\":\"2px\",\"paddingRight\":\"2px\",\"paddingBottom\":\"2px\",\"paddingLeft\":\"2px\",\"gap\":\"10px\",\"itemSpacing\":\"10px\"}'></div>\n    <div id=\"variant-2604:687304-2604:687306\" class=\"figma-layer\" style=\"position: relative; width: 110px; height: 24px; display: block; display: block; background-color: transparent; font-size: 16px; font-family: Inter, sans-serif; font-weight: 400; line-height: 24px; letter-spacing: 0%; text-align: left; width: auto; white-space: nowrap; color: #667085\" data-tooltip='{\"name\":\"Label\",\"type\":\"TEXT\",\"size\":\"110 × 24\",\"position\":\"(0, 0)\",\"color\":\"#667085\",\"colorToken\":\"Colors/Text/text-disabled\",\"fontFamily\":\"Inter\",\"fontSize\":\"16px\",\"fontWeight\":400,\"lineHeight\":\"24px\",\"letterSpacing\":\"0%\",\"typographyToken\":\"hb/decorative-type/body/regular\",\"text\":\"Checkbox text\"}'>Checkbox text</div>\n  </div>\n    </div>\n  ","properties":{"flavor":"rest","status":"disabled"}},"2604:687307":{"name":"flavor=rest, status=hover","layerStructure":{"id":"2604:687307","name":"flavor=rest, status=hover","type":"COMPONENT","x":20.5,"y":178,"width":142,"height":24,"opacity":1,"visible":true,"fills":[],"strokes":[],"cornerRadius":0,"effects":[],"layoutMode":"HORIZONTAL","paddingLeft":0,"paddingRight":0,"paddingTop":0,"paddingBottom":0,"itemSpacing":8,"primaryAxisAlignItems":"MIN","counterAxisAlignItems":"CENTER","primaryAxisSizingMode":"AUTO","counterAxisSizingMode":"AUTO","constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"2604:687308","name":"._icon_checkbox","type":"INSTANCE","x":0,"y":0,"width":24,"height":24,"opacity":1,"visible":true,"fills":[],"strokes":[{"type":"SOLID","color":{"r":0.05098039284348488,"g":0.0235294122248888,"b":0.5686274766921997},"opacity":1,"strokeWeight":1}],"cornerRadius":4,"effects":[],"layoutMode":"HORIZONTAL","paddingLeft":2,"paddingRight":2,"paddingTop":2,"paddingBottom":2,"itemSpacing":10,"primaryAxisAlignItems":"MIN","counterAxisAlignItems":"CENTER","primaryAxisSizingMode":"AUTO","counterAxisSizingMode":"AUTO","constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"layoutPositioning":"AUTO"},{"id":"2604:687309","name":"Label","type":"TEXT","x":0,"y":0,"width":110,"height":24,"opacity":1,"visible":true,"fills":[{"type":"SOLID","color":{"r":0.062745101749897,"g":0.0941176488995552,"b":0.1568627506494522},"opacity":1}],"colorToken":"Colors/Text/text-primary (900)","strokes":[],"effects":[],"characters":"Checkbox text","fontSize":16,"fontFamily":"Inter","fontWeight":400,"lineHeight":{"unit":"PIXELS","value":24},"letterSpacing":{"unit":"PERCENT","value":0},"textAlignHorizontal":"LEFT","textAlignVertical":"TOP","textAutoResize":"WIDTH_AND_HEIGHT","typographyToken":"hb/decorative-type/body/regular","constraints":{"horizontal":"SCALE","vertical":"SCALE"},"rotation":0,"layoutPositioning":"AUTO"}]},"renderedHTML":"\n    <div id=\"variant-2604:687307\" class=\"interactive-variant\" style=\"position: relative; width: 142px; height: 24px; margin: 0 auto;\">\n  <div id=\"variant-2604:687307-2604:687307\" class=\"figma-layer\" style=\"position: absolute; left: 20.5px; top: 178px; width: 142px; height: 24px; border-radius: 0px; display: flex; flex-direction: row; padding-left: 0px; padding-right: 0px; padding-top: 0px; padding-bottom: 0px; gap: 8px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden\" data-tooltip='{\"name\":\"flavor=rest, status=hover\",\"type\":\"COMPONENT\",\"size\":\"142 × 24\",\"borderRadius\":\"0px\",\"layout\":\"HORIZONTAL\",\"gap\":\"8px\",\"itemSpacing\":\"8px\"}'>\n    <div id=\"variant-2604:687307-2604:687308\" class=\"figma-layer\" style=\"position: relative; width: 24px; height: 24px; border: 1px solid #0d0691; border-radius: 4px; display: flex; flex-direction: row; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; gap: 10px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden\" data-tooltip='{\"name\":\"._icon_checkbox\",\"type\":\"INSTANCE\",\"size\":\"24 × 24\",\"stroke\":\"#0d0691 1px\",\"borderRadius\":\"4px\",\"layout\":\"HORIZONTAL\",\"padding\":\"2px 2px 2px 2px\",\"paddingTop\":\"2px\",\"paddingRight\":\"2px\",\"paddingBottom\":\"2px\",\"paddingLeft\":\"2px\",\"gap\":\"10px\",\"itemSpacing\":\"10px\"}'></div>\n    <div id=\"variant-2604:687307-2604:687309\" class=\"figma-layer\" style=\"position: relative; width: 110px; height: 24px; display: block; display: block; background-color: transparent; font-size: 16px; font-family: Inter, sans-serif; font-weight: 400; line-height: 24px; letter-spacing: 0%; text-align: left; width: auto; white-space: nowrap; color: #101828\" data-tooltip='{\"name\":\"Label\",\"type\":\"TEXT\",\"size\":\"110 × 24\",\"position\":\"(0, 0)\",\"color\":\"#101828\",\"colorToken\":\"Colors/Text/text-primary (900)\",\"fontFamily\":\"Inter\",\"fontSize\":\"16px\",\"fontWeight\":400,\"lineHeight\":\"24px\",\"letterSpacing\":\"0%\",\"typographyToken\":\"hb/decorative-type/body/regular\",\"text\":\"Checkbox text\"}'>Checkbox text</div>\n  </div>\n    </div>\n  ","properties":{"flavor":"rest","status":"hover"}},"2604:687310":{"name":"flavor=rest, status=focused","layerStructure":{"id":"2604:687310","name":"flavor=rest, status=focused","type":"COMPONENT","x":20,"y":336,"width":142,"height":24,"opacity":1,"visible":true,"fills":[],"strokes":[],"cornerRadius":0,"effects":[],"layoutMode":"HORIZONTAL","paddingLeft":0,"paddingRight":0,"paddingTop":0,"paddingBottom":0,"itemSpacing":8,"primaryAxisAlignItems":"MIN","counterAxisAlignItems":"CENTER","primaryAxisSizingMode":"AUTO","counterAxisSizingMode":"AUTO","constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"2604:687311","name":"._icon_checkbox","type":"INSTANCE","x":0,"y":0,"width":24,"height":24,"opacity":1,"visible":true,"fills":[],"strokes":[{"type":"SOLID","color":{"r":0.4588235318660736,"g":0.6666666865348816,"b":0.9686274528503418},"opacity":1,"strokeWeight":1}],"cornerRadius":4,"effects":[],"layoutMode":"HORIZONTAL","paddingLeft":2,"paddingRight":2,"paddingTop":2,"paddingBottom":2,"itemSpacing":10,"primaryAxisAlignItems":"MIN","counterAxisAlignItems":"CENTER","primaryAxisSizingMode":"AUTO","counterAxisSizingMode":"AUTO","constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"layoutPositioning":"AUTO"},{"id":"2604:687312","name":"Label","type":"TEXT","x":0,"y":0,"width":110,"height":24,"opacity":1,"visible":true,"fills":[{"type":"SOLID","color":{"r":0.062745101749897,"g":0.0941176488995552,"b":0.1568627506494522},"opacity":1}],"colorToken":"Colors/Text/text-primary (900)","strokes":[],"effects":[],"characters":"Checkbox text","fontSize":16,"fontFamily":"Inter","fontWeight":400,"lineHeight":{"unit":"PIXELS","value":24},"letterSpacing":{"unit":"PERCENT","value":0},"textAlignHorizontal":"LEFT","textAlignVertical":"TOP","textAutoResize":"WIDTH_AND_HEIGHT","typographyToken":"hb/decorative-type/body/regular","constraints":{"horizontal":"SCALE","vertical":"SCALE"},"rotation":0,"layoutPositioning":"AUTO"}]},"renderedHTML":"\n    <div id=\"variant-2604:687310\" class=\"interactive-variant\" style=\"position: relative; width: 142px; height: 24px; margin: 0 auto;\">\n  <div id=\"variant-2604:687310-2604:687310\" class=\"figma-layer\" style=\"position: absolute; left: 20px; top: 336px; width: 142px; height: 24px; border-radius: 0px; display: flex; flex-direction: row; padding-left: 0px; padding-right: 0px; padding-top: 0px; padding-bottom: 0px; gap: 8px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden\" data-tooltip='{\"name\":\"flavor=rest, status=focused\",\"type\":\"COMPONENT\",\"size\":\"142 × 24\",\"borderRadius\":\"0px\",\"layout\":\"HORIZONTAL\",\"gap\":\"8px\",\"itemSpacing\":\"8px\"}'>\n    <div id=\"variant-2604:687310-2604:687311\" class=\"figma-layer\" style=\"position: relative; width: 24px; height: 24px; border: 1px solid #75aaf7; border-radius: 4px; display: flex; flex-direction: row; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; gap: 10px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden\" data-tooltip='{\"name\":\"._icon_checkbox\",\"type\":\"INSTANCE\",\"size\":\"24 × 24\",\"stroke\":\"#75aaf7 1px\",\"borderRadius\":\"4px\",\"layout\":\"HORIZONTAL\",\"padding\":\"2px 2px 2px 2px\",\"paddingTop\":\"2px\",\"paddingRight\":\"2px\",\"paddingBottom\":\"2px\",\"paddingLeft\":\"2px\",\"gap\":\"10px\",\"itemSpacing\":\"10px\"}'></div>\n    <div id=\"variant-2604:687310-2604:687312\" class=\"figma-layer\" style=\"position: relative; width: 110px; height: 24px; display: block; display: block; background-color: transparent; font-size: 16px; font-family: Inter, sans-serif; font-weight: 400; line-height: 24px; letter-spacing: 0%; text-align: left; width: auto; white-space: nowrap; color: #101828\" data-tooltip='{\"name\":\"Label\",\"type\":\"TEXT\",\"size\":\"110 × 24\",\"position\":\"(0, 0)\",\"color\":\"#101828\",\"colorToken\":\"Colors/Text/text-primary (900)\",\"fontFamily\":\"Inter\",\"fontSize\":\"16px\",\"fontWeight\":400,\"lineHeight\":\"24px\",\"letterSpacing\":\"0%\",\"typographyToken\":\"hb/decorative-type/body/regular\",\"text\":\"Checkbox text\"}'>Checkbox text</div>\n  </div>\n    </div>\n  ","properties":{"flavor":"rest","status":"focused"}},"2604:687313":{"name":"flavor=rest, status=rest","layerStructure":{"id":"2604:687313","name":"flavor=rest, status=rest","type":"COMPONENT","x":20.5,"y":20,"width":142,"height":24,"opacity":1,"visible":true,"fills":[],"strokes":[],"cornerRadius":0,"effects":[],"layoutMode":"HORIZONTAL","paddingLeft":0,"paddingRight":0,"paddingTop":0,"paddingBottom":0,"itemSpacing":8,"primaryAxisAlignItems":"MIN","counterAxisAlignItems":"CENTER","primaryAxisSizingMode":"AUTO","counterAxisSizingMode":"AUTO","constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"2604:687314","name":"._icon_checkbox","type":"INSTANCE","x":0,"y":0,"width":24,"height":24,"opacity":1,"visible":true,"fills":[],"strokes":[{"type":"SOLID","color":{"r":0,"g":0,"b":0.7607843279838562},"opacity":1,"strokeWeight":1}],"cornerRadius":4,"effects":[],"layoutMode":"HORIZONTAL","paddingLeft":2,"paddingRight":2,"paddingTop":2,"paddingBottom":2,"itemSpacing":10,"primaryAxisAlignItems":"MIN","counterAxisAlignItems":"CENTER","primaryAxisSizingMode":"AUTO","counterAxisSizingMode":"AUTO","constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"layoutPositioning":"AUTO"},{"id":"2604:687315","name":"Label","type":"TEXT","x":0,"y":0,"width":110,"height":24,"opacity":1,"visible":true,"fills":[{"type":"SOLID","color":{"r":0.062745101749897,"g":0.0941176488995552,"b":0.1568627506494522},"opacity":1}],"colorToken":"Colors/Text/text-primary (900)","strokes":[],"effects":[],"characters":"Checkbox text","fontSize":16,"fontFamily":"Inter","fontWeight":400,"lineHeight":{"unit":"PIXELS","value":24},"letterSpacing":{"unit":"PERCENT","value":0},"textAlignHorizontal":"LEFT","textAlignVertical":"TOP","textAutoResize":"WIDTH_AND_HEIGHT","typographyToken":"hb/decorative-type/body/regular","constraints":{"horizontal":"SCALE","vertical":"SCALE"},"rotation":0,"layoutPositioning":"AUTO"}]},"renderedHTML":"\n    <div id=\"variant-2604:687313\" class=\"interactive-variant\" style=\"position: relative; width: 142px; height: 24px; margin: 0 auto;\">\n  <div id=\"variant-2604:687313-2604:687313\" class=\"figma-layer\" style=\"position: absolute; left: 20.5px; top: 20px; width: 142px; height: 24px; border-radius: 0px; display: flex; flex-direction: row; padding-left: 0px; padding-right: 0px; padding-top: 0px; padding-bottom: 0px; gap: 8px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden\" data-tooltip='{\"name\":\"flavor=rest, status=rest\",\"type\":\"COMPONENT\",\"size\":\"142 × 24\",\"borderRadius\":\"0px\",\"layout\":\"HORIZONTAL\",\"gap\":\"8px\",\"itemSpacing\":\"8px\"}'>\n    <div id=\"variant-2604:687313-2604:687314\" class=\"figma-layer\" style=\"position: relative; width: 24px; height: 24px; border: 1px solid #0000c2; border-radius: 4px; display: flex; flex-direction: row; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; gap: 10px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden\" data-tooltip='{\"name\":\"._icon_checkbox\",\"type\":\"INSTANCE\",\"size\":\"24 × 24\",\"stroke\":\"#0000c2 1px\",\"borderRadius\":\"4px\",\"layout\":\"HORIZONTAL\",\"padding\":\"2px 2px 2px 2px\",\"paddingTop\":\"2px\",\"paddingRight\":\"2px\",\"paddingBottom\":\"2px\",\"paddingLeft\":\"2px\",\"gap\":\"10px\",\"itemSpacing\":\"10px\"}'></div>\n    <div id=\"variant-2604:687313-2604:687315\" class=\"figma-layer\" style=\"position: relative; width: 110px; height: 24px; display: block; display: block; background-color: transparent; font-size: 16px; font-family: Inter, sans-serif; font-weight: 400; line-height: 24px; letter-spacing: 0%; text-align: left; width: auto; white-space: nowrap; color: #101828\" data-tooltip='{\"name\":\"Label\",\"type\":\"TEXT\",\"size\":\"110 × 24\",\"position\":\"(0, 0)\",\"color\":\"#101828\",\"colorToken\":\"Colors/Text/text-primary (900)\",\"fontFamily\":\"Inter\",\"fontSize\":\"16px\",\"fontWeight\":400,\"lineHeight\":\"24px\",\"letterSpacing\":\"0%\",\"typographyToken\":\"hb/decorative-type/body/regular\",\"text\":\"Checkbox text\"}'>Checkbox text</div>\n  </div>\n    </div>\n  ","properties":{"flavor":"rest","status":"rest"}},"2604:687316":{"name":"flavor=indeterminant, status=disabled","layerStructure":{"id":"2604:687316","name":"flavor=indeterminant, status=disabled","type":"COMPONENT","x":20.5,"y":535,"width":142,"height":24,"opacity":1,"visible":true,"fills":[],"strokes":[],"cornerRadius":0,"effects":[],"layoutMode":"HORIZONTAL","paddingLeft":0,"paddingRight":0,"paddingTop":0,"paddingBottom":0,"itemSpacing":8,"primaryAxisAlignItems":"MIN","counterAxisAlignItems":"CENTER","primaryAxisSizingMode":"AUTO","counterAxisSizingMode":"AUTO","constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"2604:687317","name":"._icon_checkbox","type":"INSTANCE","x":0,"y":0,"width":24,"height":24,"opacity":1,"visible":true,"fills":[{"type":"SOLID","color":{"r":0.4000000059604645,"g":0.46666666865348816,"b":0.5411764979362488},"opacity":1}],"colorToken":"hb/action/content-color/primary/disabled","strokes":[],"cornerRadius":4,"effects":[],"layoutMode":"HORIZONTAL","paddingLeft":2,"paddingRight":2,"paddingTop":2,"paddingBottom":2,"itemSpacing":10,"primaryAxisAlignItems":"MIN","counterAxisAlignItems":"CENTER","primaryAxisSizingMode":"AUTO","counterAxisSizingMode":"AUTO","constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"I2604:687317;465:33638","name":"hb-icon","type":"INSTANCE","x":0,"y":0,"width":20,"height":20,"opacity":1,"visible":true,"fills":[],"strokes":[],"cornerRadius":0,"effects":[],"layoutMode":"HORIZONTAL","paddingLeft":0,"paddingRight":0,"paddingTop":4,"paddingBottom":4,"itemSpacing":0,"primaryAxisAlignItems":"MIN","counterAxisAlignItems":"CENTER","primaryAxisSizingMode":"FIXED","counterAxisSizingMode":"FIXED","constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"I2604:687317;465:33638;2247:2298","name":"icon","type":"INSTANCE","x":0,"y":0,"width":20,"height":20,"opacity":1,"visible":true,"fills":[],"strokes":[],"cornerRadius":0,"effects":[],"constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"I2604:687317;465:33638;2247:2298;2247:2502","name":"vector","type":"VECTOR","x":4.166666030883789,"y":9.166668891906738,"width":11.666669845581055,"height":1.6666662693023682,"opacity":1,"visible":true,"fills":[{"type":"SOLID","color":{"r":1,"g":1,"b":1},"opacity":1}],"colorToken":"hb/decorative/content-color/reverse","strokes":[],"cornerRadius":0,"effects":[],"constraints":{"horizontal":"SCALE","vertical":"SCALE"},"rotation":0,"layoutPositioning":"AUTO"}],"layoutPositioning":"AUTO"}],"layoutPositioning":"AUTO"}],"layoutPositioning":"AUTO"},{"id":"2604:687318","name":"Label","type":"TEXT","x":0,"y":0,"width":110,"height":24,"opacity":1,"visible":true,"fills":[{"type":"SOLID","color":{"r":0.4000000059604645,"g":0.43921568989753723,"b":0.5215686559677124},"opacity":1}],"colorToken":"Colors/Text/text-disabled","strokes":[],"effects":[],"characters":"Checkbox text","fontSize":16,"fontFamily":"Inter","fontWeight":400,"lineHeight":{"unit":"PIXELS","value":24},"letterSpacing":{"unit":"PERCENT","value":0},"textAlignHorizontal":"LEFT","textAlignVertical":"TOP","textAutoResize":"WIDTH_AND_HEIGHT","typographyToken":"hb/decorative-type/body/regular","constraints":{"horizontal":"SCALE","vertical":"SCALE"},"rotation":0,"layoutPositioning":"AUTO"}]},"renderedHTML":"\n    <div id=\"variant-2604:687316\" class=\"interactive-variant\" style=\"position: relative; width: 142px; height: 24px; margin: 0 auto;\">\n  <div id=\"variant-2604:687316-2604:687316\" class=\"figma-layer\" style=\"position: absolute; left: 20.5px; top: 535px; width: 142px; height: 24px; border-radius: 0px; display: flex; flex-direction: row; padding-left: 0px; padding-right: 0px; padding-top: 0px; padding-bottom: 0px; gap: 8px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden\" data-tooltip='{\"name\":\"flavor=indeterminant, status=disabled\",\"type\":\"COMPONENT\",\"size\":\"142 × 24\",\"borderRadius\":\"0px\",\"layout\":\"HORIZONTAL\",\"gap\":\"8px\",\"itemSpacing\":\"8px\"}'>\n    <div id=\"variant-2604:687316-2604:687317\" class=\"figma-layer\" style=\"position: relative; width: 24px; height: 24px; background-color: #66778a; border-radius: 4px; display: flex; flex-direction: row; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; gap: 10px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden\" data-tooltip='{\"name\":\"._icon_checkbox\",\"type\":\"INSTANCE\",\"size\":\"24 × 24\",\"color\":\"#66778a\",\"colorToken\":\"hb/action/content-color/primary/disabled\",\"borderRadius\":\"4px\",\"layout\":\"HORIZONTAL\",\"padding\":\"2px 2px 2px 2px\",\"paddingTop\":\"2px\",\"paddingRight\":\"2px\",\"paddingBottom\":\"2px\",\"paddingLeft\":\"2px\",\"gap\":\"10px\",\"itemSpacing\":\"10px\"}'>\n      <div id=\"variant-2604:687316-I2604:687317;465:33638\" class=\"figma-layer\" style=\"position: relative; width: 20px; height: 20px; border-radius: 0px; display: flex; flex-direction: row; padding-left: 0px; padding-right: 0px; padding-top: 4px; padding-bottom: 4px; gap: 0px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden\" data-tooltip='{\"name\":\"hb-icon\",\"type\":\"INSTANCE\",\"size\":\"20 × 20\",\"borderRadius\":\"0px\",\"layout\":\"HORIZONTAL\",\"padding\":\"4px 0px 4px 0px\",\"paddingTop\":\"4px\",\"paddingRight\":\"0px\",\"paddingBottom\":\"4px\",\"paddingLeft\":\"0px\"}'>\n        <div id=\"variant-2604:687316-I2604:687317;465:33638;2247:2298\" class=\"figma-layer\" style=\"position: relative; width: 20px; height: 20px; display: block; border-radius: 0px; overflow: hidden\" data-tooltip='{\"name\":\"icon\",\"type\":\"INSTANCE\",\"size\":\"20 × 20\",\"position\":\"(0, 0)\",\"borderRadius\":\"0px\"}'>\n          <div id=\"variant-2604:687316-I2604:687317;465:33638;2247:2298;2247:2502\" class=\"figma-layer\" style=\"position: absolute; left: 4.166666030883789px; top: 9.166668891906738px; width: 11.666669845581055px; height: 1.6666662693023682px; display: block; background-color: #ffffff; border-radius: 0px\" data-tooltip='{\"name\":\"vector\",\"type\":\"VECTOR\",\"size\":\"12 × 2\",\"position\":\"(4, 9)\",\"color\":\"#ffffff\",\"colorToken\":\"hb/decorative/content-color/reverse\",\"borderRadius\":\"0px\"}'></div>\n        </div>\n      </div>\n    </div>\n    <div id=\"variant-2604:687316-2604:687318\" class=\"figma-layer\" style=\"position: relative; width: 110px; height: 24px; display: block; display: block; background-color: transparent; font-size: 16px; font-family: Inter, sans-serif; font-weight: 400; line-height: 24px; letter-spacing: 0%; text-align: left; width: auto; white-space: nowrap; color: #667085\" data-tooltip='{\"name\":\"Label\",\"type\":\"TEXT\",\"size\":\"110 × 24\",\"position\":\"(0, 0)\",\"color\":\"#667085\",\"colorToken\":\"Colors/Text/text-disabled\",\"fontFamily\":\"Inter\",\"fontSize\":\"16px\",\"fontWeight\":400,\"lineHeight\":\"24px\",\"letterSpacing\":\"0%\",\"typographyToken\":\"hb/decorative-type/body/regular\",\"text\":\"Checkbox text\"}'>Checkbox text</div>\n  </div>\n    </div>\n  ","properties":{"flavor":"indeterminant","status":"disabled"}},"2604:687319":{"name":"flavor=indeterminant, status=hover","layerStructure":{"id":"2604:687319","name":"flavor=indeterminant, status=hover","type":"COMPONENT","x":20.5,"y":218,"width":142,"height":24,"opacity":1,"visible":true,"fills":[],"strokes":[],"cornerRadius":0,"effects":[],"layoutMode":"HORIZONTAL","paddingLeft":0,"paddingRight":0,"paddingTop":0,"paddingBottom":0,"itemSpacing":8,"primaryAxisAlignItems":"MIN","counterAxisAlignItems":"CENTER","primaryAxisSizingMode":"AUTO","counterAxisSizingMode":"AUTO","constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"2604:687320","name":"._icon_checkbox","type":"INSTANCE","x":0,"y":0,"width":24,"height":24,"opacity":1,"visible":true,"fills":[{"type":"SOLID","color":{"r":0.05098039284348488,"g":0.0235294122248888,"b":0.5686274766921997},"opacity":1}],"colorToken":"hb/action/content-color/primary/hover","strokes":[],"cornerRadius":4,"effects":[],"layoutMode":"HORIZONTAL","paddingLeft":2,"paddingRight":2,"paddingTop":2,"paddingBottom":2,"itemSpacing":10,"primaryAxisAlignItems":"MIN","counterAxisAlignItems":"CENTER","primaryAxisSizingMode":"AUTO","counterAxisSizingMode":"AUTO","constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"I2604:687320;465:33620","name":"hb-icon","type":"INSTANCE","x":0,"y":0,"width":20,"height":20,"opacity":1,"visible":true,"fills":[],"strokes":[],"cornerRadius":0,"effects":[],"layoutMode":"HORIZONTAL","paddingLeft":0,"paddingRight":0,"paddingTop":4,"paddingBottom":4,"itemSpacing":0,"primaryAxisAlignItems":"MIN","counterAxisAlignItems":"CENTER","primaryAxisSizingMode":"FIXED","counterAxisSizingMode":"FIXED","constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"I2604:687320;465:33620;2247:2298","name":"icon","type":"INSTANCE","x":0,"y":0,"width":20,"height":20,"opacity":1,"visible":true,"fills":[],"strokes":[],"cornerRadius":0,"effects":[],"constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"I2604:687320;465:33620;2247:2298;2247:2502","name":"vector","type":"VECTOR","x":4.166666030883789,"y":9.166668891906738,"width":11.666669845581055,"height":1.6666662693023682,"opacity":1,"visible":true,"fills":[{"type":"SOLID","color":{"r":1,"g":1,"b":1},"opacity":1}],"colorToken":"hb/decorative/content-color/reverse","strokes":[],"cornerRadius":0,"effects":[],"constraints":{"horizontal":"SCALE","vertical":"SCALE"},"rotation":0,"layoutPositioning":"AUTO"}],"layoutPositioning":"AUTO"}],"layoutPositioning":"AUTO"}],"layoutPositioning":"AUTO"},{"id":"2604:687321","name":"Label","type":"TEXT","x":0,"y":0,"width":110,"height":24,"opacity":1,"visible":true,"fills":[{"type":"SOLID","color":{"r":0.062745101749897,"g":0.0941176488995552,"b":0.1568627506494522},"opacity":1}],"colorToken":"Colors/Text/text-primary (900)","strokes":[],"effects":[],"characters":"Checkbox text","fontSize":16,"fontFamily":"Inter","fontWeight":400,"lineHeight":{"unit":"PIXELS","value":24},"letterSpacing":{"unit":"PERCENT","value":0},"textAlignHorizontal":"LEFT","textAlignVertical":"TOP","textAutoResize":"WIDTH_AND_HEIGHT","typographyToken":"hb/decorative-type/body/regular","constraints":{"horizontal":"SCALE","vertical":"SCALE"},"rotation":0,"layoutPositioning":"AUTO"}]},"renderedHTML":"\n    <div id=\"variant-2604:687319\" class=\"interactive-variant\" style=\"position: relative; width: 142px; height: 24px; margin: 0 auto;\">\n  <div id=\"variant-2604:687319-2604:687319\" class=\"figma-layer\" style=\"position: absolute; left: 20.5px; top: 218px; width: 142px; height: 24px; border-radius: 0px; display: flex; flex-direction: row; padding-left: 0px; padding-right: 0px; padding-top: 0px; padding-bottom: 0px; gap: 8px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden\" data-tooltip='{\"name\":\"flavor=indeterminant, status=hover\",\"type\":\"COMPONENT\",\"size\":\"142 × 24\",\"borderRadius\":\"0px\",\"layout\":\"HORIZONTAL\",\"gap\":\"8px\",\"itemSpacing\":\"8px\"}'>\n    <div id=\"variant-2604:687319-2604:687320\" class=\"figma-layer\" style=\"position: relative; width: 24px; height: 24px; background-color: #0d0691; border-radius: 4px; display: flex; flex-direction: row; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; gap: 10px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden\" data-tooltip='{\"name\":\"._icon_checkbox\",\"type\":\"INSTANCE\",\"size\":\"24 × 24\",\"color\":\"#0d0691\",\"colorToken\":\"hb/action/content-color/primary/hover\",\"borderRadius\":\"4px\",\"layout\":\"HORIZONTAL\",\"padding\":\"2px 2px 2px 2px\",\"paddingTop\":\"2px\",\"paddingRight\":\"2px\",\"paddingBottom\":\"2px\",\"paddingLeft\":\"2px\",\"gap\":\"10px\",\"itemSpacing\":\"10px\"}'>\n      <div id=\"variant-2604:687319-I2604:687320;465:33620\" class=\"figma-layer\" style=\"position: relative; width: 20px; height: 20px; border-radius: 0px; display: flex; flex-direction: row; padding-left: 0px; padding-right: 0px; padding-top: 4px; padding-bottom: 4px; gap: 0px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden\" data-tooltip='{\"name\":\"hb-icon\",\"type\":\"INSTANCE\",\"size\":\"20 × 20\",\"borderRadius\":\"0px\",\"layout\":\"HORIZONTAL\",\"padding\":\"4px 0px 4px 0px\",\"paddingTop\":\"4px\",\"paddingRight\":\"0px\",\"paddingBottom\":\"4px\",\"paddingLeft\":\"0px\"}'>\n        <div id=\"variant-2604:687319-I2604:687320;465:33620;2247:2298\" class=\"figma-layer\" style=\"position: relative; width: 20px; height: 20px; display: block; border-radius: 0px; overflow: hidden\" data-tooltip='{\"name\":\"icon\",\"type\":\"INSTANCE\",\"size\":\"20 × 20\",\"position\":\"(0, 0)\",\"borderRadius\":\"0px\"}'>\n          <div id=\"variant-2604:687319-I2604:687320;465:33620;2247:2298;2247:2502\" class=\"figma-layer\" style=\"position: absolute; left: 4.166666030883789px; top: 9.166668891906738px; width: 11.666669845581055px; height: 1.6666662693023682px; display: block; background-color: #ffffff; border-radius: 0px\" data-tooltip='{\"name\":\"vector\",\"type\":\"VECTOR\",\"size\":\"12 × 2\",\"position\":\"(4, 9)\",\"color\":\"#ffffff\",\"colorToken\":\"hb/decorative/content-color/reverse\",\"borderRadius\":\"0px\"}'></div>\n        </div>\n      </div>\n    </div>\n    <div id=\"variant-2604:687319-2604:687321\" class=\"figma-layer\" style=\"position: relative; width: 110px; height: 24px; display: block; display: block; background-color: transparent; font-size: 16px; font-family: Inter, sans-serif; font-weight: 400; line-height: 24px; letter-spacing: 0%; text-align: left; width: auto; white-space: nowrap; color: #101828\" data-tooltip='{\"name\":\"Label\",\"type\":\"TEXT\",\"size\":\"110 × 24\",\"position\":\"(0, 0)\",\"color\":\"#101828\",\"colorToken\":\"Colors/Text/text-primary (900)\",\"fontFamily\":\"Inter\",\"fontSize\":\"16px\",\"fontWeight\":400,\"lineHeight\":\"24px\",\"letterSpacing\":\"0%\",\"typographyToken\":\"hb/decorative-type/body/regular\",\"text\":\"Checkbox text\"}'>Checkbox text</div>\n  </div>\n    </div>\n  ","properties":{"flavor":"indeterminant","status":"hover"}},"2604:687322":{"name":"flavor=indeterminant, status=focused","layerStructure":{"id":"2604:687322","name":"flavor=indeterminant, status=focused","type":"COMPONENT","x":20,"y":377,"width":142,"height":24,"opacity":1,"visible":true,"fills":[],"strokes":[],"cornerRadius":0,"effects":[],"layoutMode":"HORIZONTAL","paddingLeft":0,"paddingRight":0,"paddingTop":0,"paddingBottom":0,"itemSpacing":8,"primaryAxisAlignItems":"MIN","counterAxisAlignItems":"CENTER","primaryAxisSizingMode":"AUTO","counterAxisSizingMode":"AUTO","constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"2604:687323","name":"._icon_checkbox","type":"INSTANCE","x":0,"y":0,"width":24,"height":24,"opacity":1,"visible":true,"fills":[{"type":"SOLID","color":{"r":0.054901961237192154,"g":0.21960784494876862,"b":0.8470588326454163},"opacity":1}],"colorToken":"hb/action/content-color/primary/default","strokes":[{"type":"SOLID","color":{"r":0.4588235318660736,"g":0.6666666865348816,"b":0.9686274528503418},"opacity":1,"strokeWeight":1}],"cornerRadius":4,"effects":[],"layoutMode":"HORIZONTAL","paddingLeft":2,"paddingRight":2,"paddingTop":2,"paddingBottom":2,"itemSpacing":10,"primaryAxisAlignItems":"MIN","counterAxisAlignItems":"CENTER","primaryAxisSizingMode":"AUTO","counterAxisSizingMode":"AUTO","constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"I2604:687323;465:33629","name":"hb-icon","type":"INSTANCE","x":0,"y":0,"width":20,"height":20,"opacity":1,"visible":true,"fills":[],"strokes":[],"cornerRadius":0,"effects":[],"layoutMode":"HORIZONTAL","paddingLeft":0,"paddingRight":0,"paddingTop":4,"paddingBottom":4,"itemSpacing":0,"primaryAxisAlignItems":"MIN","counterAxisAlignItems":"CENTER","primaryAxisSizingMode":"FIXED","counterAxisSizingMode":"FIXED","constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"I2604:687323;465:33629;2247:2298","name":"icon","type":"INSTANCE","x":0,"y":0,"width":20,"height":20,"opacity":1,"visible":true,"fills":[],"strokes":[],"cornerRadius":0,"effects":[],"constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"I2604:687323;465:33629;2247:2298;2247:2502","name":"vector","type":"VECTOR","x":4.166666030883789,"y":9.166668891906738,"width":11.666669845581055,"height":1.6666662693023682,"opacity":1,"visible":true,"fills":[{"type":"SOLID","color":{"r":1,"g":1,"b":1},"opacity":1}],"colorToken":"hb/decorative/content-color/reverse","strokes":[],"cornerRadius":0,"effects":[],"constraints":{"horizontal":"SCALE","vertical":"SCALE"},"rotation":0,"layoutPositioning":"AUTO"}],"layoutPositioning":"AUTO"}],"layoutPositioning":"AUTO"}],"layoutPositioning":"AUTO"},{"id":"2604:687324","name":"Label","type":"TEXT","x":0,"y":0,"width":110,"height":24,"opacity":1,"visible":true,"fills":[{"type":"SOLID","color":{"r":0.062745101749897,"g":0.0941176488995552,"b":0.1568627506494522},"opacity":1}],"colorToken":"Colors/Text/text-primary (900)","strokes":[],"effects":[],"characters":"Checkbox text","fontSize":16,"fontFamily":"Inter","fontWeight":400,"lineHeight":{"unit":"PIXELS","value":24},"letterSpacing":{"unit":"PERCENT","value":0},"textAlignHorizontal":"LEFT","textAlignVertical":"TOP","textAutoResize":"WIDTH_AND_HEIGHT","typographyToken":"hb/decorative-type/body/regular","constraints":{"horizontal":"SCALE","vertical":"SCALE"},"rotation":0,"layoutPositioning":"AUTO"}]},"renderedHTML":"\n    <div id=\"variant-2604:687322\" class=\"interactive-variant\" style=\"position: relative; width: 142px; height: 24px; margin: 0 auto;\">\n  <div id=\"variant-2604:687322-2604:687322\" class=\"figma-layer\" style=\"position: absolute; left: 20px; top: 377px; width: 142px; height: 24px; border-radius: 0px; display: flex; flex-direction: row; padding-left: 0px; padding-right: 0px; padding-top: 0px; padding-bottom: 0px; gap: 8px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden\" data-tooltip='{\"name\":\"flavor=indeterminant, status=focused\",\"type\":\"COMPONENT\",\"size\":\"142 × 24\",\"borderRadius\":\"0px\",\"layout\":\"HORIZONTAL\",\"gap\":\"8px\",\"itemSpacing\":\"8px\"}'>\n    <div id=\"variant-2604:687322-2604:687323\" class=\"figma-layer\" style=\"position: relative; width: 24px; height: 24px; background-color: #0e38d8; border: 1px solid #75aaf7; border-radius: 4px; display: flex; flex-direction: row; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; gap: 10px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden\" data-tooltip='{\"name\":\"._icon_checkbox\",\"type\":\"INSTANCE\",\"size\":\"24 × 24\",\"color\":\"#0e38d8\",\"colorToken\":\"hb/action/content-color/primary/default\",\"stroke\":\"#75aaf7 1px\",\"borderRadius\":\"4px\",\"layout\":\"HORIZONTAL\",\"padding\":\"2px 2px 2px 2px\",\"paddingTop\":\"2px\",\"paddingRight\":\"2px\",\"paddingBottom\":\"2px\",\"paddingLeft\":\"2px\",\"gap\":\"10px\",\"itemSpacing\":\"10px\"}'>\n      <div id=\"variant-2604:687322-I2604:687323;465:33629\" class=\"figma-layer\" style=\"position: relative; width: 20px; height: 20px; border-radius: 0px; display: flex; flex-direction: row; padding-left: 0px; padding-right: 0px; padding-top: 4px; padding-bottom: 4px; gap: 0px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden\" data-tooltip='{\"name\":\"hb-icon\",\"type\":\"INSTANCE\",\"size\":\"20 × 20\",\"borderRadius\":\"0px\",\"layout\":\"HORIZONTAL\",\"padding\":\"4px 0px 4px 0px\",\"paddingTop\":\"4px\",\"paddingRight\":\"0px\",\"paddingBottom\":\"4px\",\"paddingLeft\":\"0px\"}'>\n        <div id=\"variant-2604:687322-I2604:687323;465:33629;2247:2298\" class=\"figma-layer\" style=\"position: relative; width: 20px; height: 20px; display: block; border-radius: 0px; overflow: hidden\" data-tooltip='{\"name\":\"icon\",\"type\":\"INSTANCE\",\"size\":\"20 × 20\",\"position\":\"(0, 0)\",\"borderRadius\":\"0px\"}'>\n          <div id=\"variant-2604:687322-I2604:687323;465:33629;2247:2298;2247:2502\" class=\"figma-layer\" style=\"position: absolute; left: 4.166666030883789px; top: 9.166668891906738px; width: 11.666669845581055px; height: 1.6666662693023682px; display: block; background-color: #ffffff; border-radius: 0px\" data-tooltip='{\"name\":\"vector\",\"type\":\"VECTOR\",\"size\":\"12 × 2\",\"position\":\"(4, 9)\",\"color\":\"#ffffff\",\"colorToken\":\"hb/decorative/content-color/reverse\",\"borderRadius\":\"0px\"}'></div>\n        </div>\n      </div>\n    </div>\n    <div id=\"variant-2604:687322-2604:687324\" class=\"figma-layer\" style=\"position: relative; width: 110px; height: 24px; display: block; display: block; background-color: transparent; font-size: 16px; font-family: Inter, sans-serif; font-weight: 400; line-height: 24px; letter-spacing: 0%; text-align: left; width: auto; white-space: nowrap; color: #101828\" data-tooltip='{\"name\":\"Label\",\"type\":\"TEXT\",\"size\":\"110 × 24\",\"position\":\"(0, 0)\",\"color\":\"#101828\",\"colorToken\":\"Colors/Text/text-primary (900)\",\"fontFamily\":\"Inter\",\"fontSize\":\"16px\",\"fontWeight\":400,\"lineHeight\":\"24px\",\"letterSpacing\":\"0%\",\"typographyToken\":\"hb/decorative-type/body/regular\",\"text\":\"Checkbox text\"}'>Checkbox text</div>\n  </div>\n    </div>\n  ","properties":{"flavor":"indeterminant","status":"focused"}},"2604:687325":{"name":"flavor=indeterminant, status=rest","layerStructure":{"id":"2604:687325","name":"flavor=indeterminant, status=rest","type":"COMPONENT","x":20.5,"y":60,"width":142,"height":24,"opacity":1,"visible":true,"fills":[],"strokes":[],"cornerRadius":0,"effects":[],"layoutMode":"HORIZONTAL","paddingLeft":0,"paddingRight":0,"paddingTop":0,"paddingBottom":0,"itemSpacing":8,"primaryAxisAlignItems":"MIN","counterAxisAlignItems":"CENTER","primaryAxisSizingMode":"AUTO","counterAxisSizingMode":"AUTO","constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"2604:687326","name":"._icon_checkbox","type":"INSTANCE","x":0,"y":0,"width":24,"height":24,"opacity":1,"visible":true,"fills":[{"type":"SOLID","color":{"r":0.054901961237192154,"g":0.21960784494876862,"b":0.8470588326454163},"opacity":1}],"colorToken":"hb/action/content-color/primary/default","strokes":[],"cornerRadius":4,"effects":[],"layoutMode":"HORIZONTAL","paddingLeft":2,"paddingRight":2,"paddingTop":2,"paddingBottom":2,"itemSpacing":10,"primaryAxisAlignItems":"MIN","counterAxisAlignItems":"CENTER","primaryAxisSizingMode":"AUTO","counterAxisSizingMode":"AUTO","constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"I2604:687326;465:33602","name":"hb-icon","type":"INSTANCE","x":0,"y":0,"width":20,"height":20,"opacity":1,"visible":true,"fills":[],"strokes":[],"cornerRadius":0,"effects":[],"layoutMode":"HORIZONTAL","paddingLeft":0,"paddingRight":0,"paddingTop":4,"paddingBottom":4,"itemSpacing":0,"primaryAxisAlignItems":"MIN","counterAxisAlignItems":"CENTER","primaryAxisSizingMode":"FIXED","counterAxisSizingMode":"FIXED","constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"I2604:687326;465:33602;2247:2298","name":"icon","type":"INSTANCE","x":0,"y":0,"width":20,"height":20,"opacity":1,"visible":true,"fills":[],"strokes":[],"cornerRadius":0,"effects":[],"constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"I2604:687326;465:33602;2247:2298;2247:2502","name":"vector","type":"VECTOR","x":4.166666030883789,"y":9.166668891906738,"width":11.666669845581055,"height":1.6666662693023682,"opacity":1,"visible":true,"fills":[{"type":"SOLID","color":{"r":1,"g":1,"b":1},"opacity":1}],"colorToken":"hb/decorative/content-color/reverse","strokes":[],"cornerRadius":0,"effects":[],"constraints":{"horizontal":"SCALE","vertical":"SCALE"},"rotation":0,"layoutPositioning":"AUTO"}],"layoutPositioning":"AUTO"}],"layoutPositioning":"AUTO"}],"layoutPositioning":"AUTO"},{"id":"2604:687327","name":"Label","type":"TEXT","x":0,"y":0,"width":110,"height":24,"opacity":1,"visible":true,"fills":[{"type":"SOLID","color":{"r":0.062745101749897,"g":0.0941176488995552,"b":0.1568627506494522},"opacity":1}],"colorToken":"Colors/Text/text-primary (900)","strokes":[],"effects":[],"characters":"Checkbox text","fontSize":16,"fontFamily":"Inter","fontWeight":400,"lineHeight":{"unit":"PIXELS","value":24},"letterSpacing":{"unit":"PERCENT","value":0},"textAlignHorizontal":"LEFT","textAlignVertical":"TOP","textAutoResize":"WIDTH_AND_HEIGHT","typographyToken":"hb/decorative-type/body/regular","constraints":{"horizontal":"SCALE","vertical":"SCALE"},"rotation":0,"layoutPositioning":"AUTO"}]},"renderedHTML":"\n    <div id=\"variant-2604:687325\" class=\"interactive-variant\" style=\"position: relative; width: 142px; height: 24px; margin: 0 auto;\">\n  <div id=\"variant-2604:687325-2604:687325\" class=\"figma-layer\" style=\"position: absolute; left: 20.5px; top: 60px; width: 142px; height: 24px; border-radius: 0px; display: flex; flex-direction: row; padding-left: 0px; padding-right: 0px; padding-top: 0px; padding-bottom: 0px; gap: 8px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden\" data-tooltip='{\"name\":\"flavor=indeterminant, status=rest\",\"type\":\"COMPONENT\",\"size\":\"142 × 24\",\"borderRadius\":\"0px\",\"layout\":\"HORIZONTAL\",\"gap\":\"8px\",\"itemSpacing\":\"8px\"}'>\n    <div id=\"variant-2604:687325-2604:687326\" class=\"figma-layer\" style=\"position: relative; width: 24px; height: 24px; background-color: #0e38d8; border-radius: 4px; display: flex; flex-direction: row; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; gap: 10px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden\" data-tooltip='{\"name\":\"._icon_checkbox\",\"type\":\"INSTANCE\",\"size\":\"24 × 24\",\"color\":\"#0e38d8\",\"colorToken\":\"hb/action/content-color/primary/default\",\"borderRadius\":\"4px\",\"layout\":\"HORIZONTAL\",\"padding\":\"2px 2px 2px 2px\",\"paddingTop\":\"2px\",\"paddingRight\":\"2px\",\"paddingBottom\":\"2px\",\"paddingLeft\":\"2px\",\"gap\":\"10px\",\"itemSpacing\":\"10px\"}'>\n      <div id=\"variant-2604:687325-I2604:687326;465:33602\" class=\"figma-layer\" style=\"position: relative; width: 20px; height: 20px; border-radius: 0px; display: flex; flex-direction: row; padding-left: 0px; padding-right: 0px; padding-top: 4px; padding-bottom: 4px; gap: 0px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden\" data-tooltip='{\"name\":\"hb-icon\",\"type\":\"INSTANCE\",\"size\":\"20 × 20\",\"borderRadius\":\"0px\",\"layout\":\"HORIZONTAL\",\"padding\":\"4px 0px 4px 0px\",\"paddingTop\":\"4px\",\"paddingRight\":\"0px\",\"paddingBottom\":\"4px\",\"paddingLeft\":\"0px\"}'>\n        <div id=\"variant-2604:687325-I2604:687326;465:33602;2247:2298\" class=\"figma-layer\" style=\"position: relative; width: 20px; height: 20px; display: block; border-radius: 0px; overflow: hidden\" data-tooltip='{\"name\":\"icon\",\"type\":\"INSTANCE\",\"size\":\"20 × 20\",\"position\":\"(0, 0)\",\"borderRadius\":\"0px\"}'>\n          <div id=\"variant-2604:687325-I2604:687326;465:33602;2247:2298;2247:2502\" class=\"figma-layer\" style=\"position: absolute; left: 4.166666030883789px; top: 9.166668891906738px; width: 11.666669845581055px; height: 1.6666662693023682px; display: block; background-color: #ffffff; border-radius: 0px\" data-tooltip='{\"name\":\"vector\",\"type\":\"VECTOR\",\"size\":\"12 × 2\",\"position\":\"(4, 9)\",\"color\":\"#ffffff\",\"colorToken\":\"hb/decorative/content-color/reverse\",\"borderRadius\":\"0px\"}'></div>\n        </div>\n      </div>\n    </div>\n    <div id=\"variant-2604:687325-2604:687327\" class=\"figma-layer\" style=\"position: relative; width: 110px; height: 24px; display: block; display: block; background-color: transparent; font-size: 16px; font-family: Inter, sans-serif; font-weight: 400; line-height: 24px; letter-spacing: 0%; text-align: left; width: auto; white-space: nowrap; color: #101828\" data-tooltip='{\"name\":\"Label\",\"type\":\"TEXT\",\"size\":\"110 × 24\",\"position\":\"(0, 0)\",\"color\":\"#101828\",\"colorToken\":\"Colors/Text/text-primary (900)\",\"fontFamily\":\"Inter\",\"fontSize\":\"16px\",\"fontWeight\":400,\"lineHeight\":\"24px\",\"letterSpacing\":\"0%\",\"typographyToken\":\"hb/decorative-type/body/regular\",\"text\":\"Checkbox text\"}'>Checkbox text</div>\n  </div>\n    </div>\n  ","properties":{"flavor":"indeterminant","status":"rest"}},"2604:687328":{"name":"flavor=selected, status=disabled","layerStructure":{"id":"2604:687328","name":"flavor=selected, status=disabled","type":"COMPONENT","x":20.5,"y":575,"width":142,"height":24,"opacity":1,"visible":true,"fills":[],"strokes":[],"cornerRadius":0,"effects":[],"layoutMode":"HORIZONTAL","paddingLeft":0,"paddingRight":0,"paddingTop":0,"paddingBottom":0,"itemSpacing":8,"primaryAxisAlignItems":"MIN","counterAxisAlignItems":"CENTER","primaryAxisSizingMode":"AUTO","counterAxisSizingMode":"AUTO","constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"2604:687329","name":"._icon_checkbox","type":"INSTANCE","x":0,"y":0,"width":24,"height":24,"opacity":1,"visible":true,"fills":[{"type":"SOLID","color":{"r":0.4000000059604645,"g":0.46666666865348816,"b":0.5411764979362488},"opacity":1}],"colorToken":"hb/action/content-color/primary/disabled","strokes":[],"cornerRadius":4,"effects":[],"layoutMode":"HORIZONTAL","paddingLeft":2,"paddingRight":2,"paddingTop":2,"paddingBottom":2,"itemSpacing":10,"primaryAxisAlignItems":"MIN","counterAxisAlignItems":"CENTER","primaryAxisSizingMode":"AUTO","counterAxisSizingMode":"AUTO","constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"I2604:687329;465:33635","name":"hb-icon","type":"INSTANCE","x":0,"y":0,"width":20,"height":20,"opacity":1,"visible":true,"fills":[],"strokes":[],"cornerRadius":0,"effects":[],"layoutMode":"HORIZONTAL","paddingLeft":0,"paddingRight":0,"paddingTop":4,"paddingBottom":4,"itemSpacing":0,"primaryAxisAlignItems":"MIN","counterAxisAlignItems":"CENTER","primaryAxisSizingMode":"FIXED","counterAxisSizingMode":"FIXED","constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"I2604:687329;465:33635;2247:2298","name":"icon","type":"INSTANCE","x":0,"y":0,"width":20,"height":20,"opacity":1,"visible":true,"fills":[],"strokes":[],"cornerRadius":0,"effects":[],"constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"I2604:687329;465:33635;2247:2298;2247:2488","name":"vector","type":"VECTOR","x":3.208333969116211,"y":4.979167461395264,"width":13.583333969116211,"height":10.02083683013916,"opacity":1,"visible":true,"fills":[{"type":"SOLID","color":{"r":1,"g":1,"b":1},"opacity":1}],"colorToken":"hb/decorative/content-color/reverse","strokes":[],"cornerRadius":0,"effects":[],"constraints":{"horizontal":"SCALE","vertical":"SCALE"},"rotation":0,"layoutPositioning":"AUTO"}],"layoutPositioning":"AUTO"}],"layoutPositioning":"AUTO"}],"layoutPositioning":"AUTO"},{"id":"2604:687330","name":"Label","type":"TEXT","x":0,"y":0,"width":110,"height":24,"opacity":1,"visible":true,"fills":[{"type":"SOLID","color":{"r":0.4000000059604645,"g":0.43921568989753723,"b":0.5215686559677124},"opacity":1}],"colorToken":"Colors/Text/text-disabled","strokes":[],"effects":[],"characters":"Checkbox text","fontSize":16,"fontFamily":"Inter","fontWeight":400,"lineHeight":{"unit":"PIXELS","value":24},"letterSpacing":{"unit":"PERCENT","value":0},"textAlignHorizontal":"LEFT","textAlignVertical":"TOP","textAutoResize":"WIDTH_AND_HEIGHT","typographyToken":"hb/decorative-type/body/regular","constraints":{"horizontal":"SCALE","vertical":"SCALE"},"rotation":0,"layoutPositioning":"AUTO"}]},"renderedHTML":"\n    <div id=\"variant-2604:687328\" class=\"interactive-variant\" style=\"position: relative; width: 142px; height: 24px; margin: 0 auto;\">\n  <div id=\"variant-2604:687328-2604:687328\" class=\"figma-layer\" style=\"position: absolute; left: 20.5px; top: 575px; width: 142px; height: 24px; border-radius: 0px; display: flex; flex-direction: row; padding-left: 0px; padding-right: 0px; padding-top: 0px; padding-bottom: 0px; gap: 8px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden\" data-tooltip='{\"name\":\"flavor=selected, status=disabled\",\"type\":\"COMPONENT\",\"size\":\"142 × 24\",\"borderRadius\":\"0px\",\"layout\":\"HORIZONTAL\",\"gap\":\"8px\",\"itemSpacing\":\"8px\"}'>\n    <div id=\"variant-2604:687328-2604:687329\" class=\"figma-layer\" style=\"position: relative; width: 24px; height: 24px; background-color: #66778a; border-radius: 4px; display: flex; flex-direction: row; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; gap: 10px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden\" data-tooltip='{\"name\":\"._icon_checkbox\",\"type\":\"INSTANCE\",\"size\":\"24 × 24\",\"color\":\"#66778a\",\"colorToken\":\"hb/action/content-color/primary/disabled\",\"borderRadius\":\"4px\",\"layout\":\"HORIZONTAL\",\"padding\":\"2px 2px 2px 2px\",\"paddingTop\":\"2px\",\"paddingRight\":\"2px\",\"paddingBottom\":\"2px\",\"paddingLeft\":\"2px\",\"gap\":\"10px\",\"itemSpacing\":\"10px\"}'>\n      <div id=\"variant-2604:687328-I2604:687329;465:33635\" class=\"figma-layer\" style=\"position: relative; width: 20px; height: 20px; border-radius: 0px; display: flex; flex-direction: row; padding-left: 0px; padding-right: 0px; padding-top: 4px; padding-bottom: 4px; gap: 0px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden\" data-tooltip='{\"name\":\"hb-icon\",\"type\":\"INSTANCE\",\"size\":\"20 × 20\",\"borderRadius\":\"0px\",\"layout\":\"HORIZONTAL\",\"padding\":\"4px 0px 4px 0px\",\"paddingTop\":\"4px\",\"paddingRight\":\"0px\",\"paddingBottom\":\"4px\",\"paddingLeft\":\"0px\"}'>\n        <div id=\"variant-2604:687328-I2604:687329;465:33635;2247:2298\" class=\"figma-layer\" style=\"position: relative; width: 20px; height: 20px; display: block; border-radius: 0px; overflow: hidden\" data-tooltip='{\"name\":\"icon\",\"type\":\"INSTANCE\",\"size\":\"20 × 20\",\"position\":\"(0, 0)\",\"borderRadius\":\"0px\"}'>\n          <div id=\"variant-2604:687328-I2604:687329;465:33635;2247:2298;2247:2488\" class=\"figma-layer\" style=\"position: absolute; left: 3.208333969116211px; top: 4.979167461395264px; width: 13.583333969116211px; height: 10.02083683013916px; display: block; background-color: #ffffff; border-radius: 0px\" data-tooltip='{\"name\":\"vector\",\"type\":\"VECTOR\",\"size\":\"14 × 10\",\"position\":\"(3, 5)\",\"color\":\"#ffffff\",\"colorToken\":\"hb/decorative/content-color/reverse\",\"borderRadius\":\"0px\"}'></div>\n        </div>\n      </div>\n    </div>\n    <div id=\"variant-2604:687328-2604:687330\" class=\"figma-layer\" style=\"position: relative; width: 110px; height: 24px; display: block; display: block; background-color: transparent; font-size: 16px; font-family: Inter, sans-serif; font-weight: 400; line-height: 24px; letter-spacing: 0%; text-align: left; width: auto; white-space: nowrap; color: #667085\" data-tooltip='{\"name\":\"Label\",\"type\":\"TEXT\",\"size\":\"110 × 24\",\"position\":\"(0, 0)\",\"color\":\"#667085\",\"colorToken\":\"Colors/Text/text-disabled\",\"fontFamily\":\"Inter\",\"fontSize\":\"16px\",\"fontWeight\":400,\"lineHeight\":\"24px\",\"letterSpacing\":\"0%\",\"typographyToken\":\"hb/decorative-type/body/regular\",\"text\":\"Checkbox text\"}'>Checkbox text</div>\n  </div>\n    </div>\n  ","properties":{"flavor":"selected","status":"disabled"}},"2604:687331":{"name":"flavor=selected, status=hover","layerStructure":{"id":"2604:687331","name":"flavor=selected, status=hover","type":"COMPONENT","x":20.5,"y":258,"width":142,"height":24,"opacity":1,"visible":true,"fills":[],"strokes":[],"cornerRadius":0,"effects":[],"layoutMode":"HORIZONTAL","paddingLeft":0,"paddingRight":0,"paddingTop":0,"paddingBottom":0,"itemSpacing":8,"primaryAxisAlignItems":"MIN","counterAxisAlignItems":"CENTER","primaryAxisSizingMode":"AUTO","counterAxisSizingMode":"AUTO","constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"2604:687332","name":"._icon_checkbox","type":"INSTANCE","x":0,"y":0,"width":24,"height":24,"opacity":1,"visible":true,"fills":[{"type":"SOLID","color":{"r":0.05098039284348488,"g":0.0235294122248888,"b":0.5686274766921997},"opacity":1}],"colorToken":"hb/action/content-color/primary/hover","strokes":[],"cornerRadius":4,"effects":[],"layoutMode":"HORIZONTAL","paddingLeft":2,"paddingRight":2,"paddingTop":2,"paddingBottom":2,"itemSpacing":10,"primaryAxisAlignItems":"MIN","counterAxisAlignItems":"CENTER","primaryAxisSizingMode":"AUTO","counterAxisSizingMode":"AUTO","constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"I2604:687332;465:33617","name":"hb-icon","type":"INSTANCE","x":0,"y":0,"width":20,"height":20,"opacity":1,"visible":true,"fills":[],"strokes":[],"cornerRadius":0,"effects":[],"layoutMode":"HORIZONTAL","paddingLeft":0,"paddingRight":0,"paddingTop":4,"paddingBottom":4,"itemSpacing":0,"primaryAxisAlignItems":"MIN","counterAxisAlignItems":"CENTER","primaryAxisSizingMode":"FIXED","counterAxisSizingMode":"FIXED","constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"I2604:687332;465:33617;2247:2298","name":"icon","type":"INSTANCE","x":0,"y":0,"width":20,"height":20,"opacity":1,"visible":true,"fills":[],"strokes":[],"cornerRadius":0,"effects":[],"constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"I2604:687332;465:33617;2247:2298;2247:2488","name":"vector","type":"VECTOR","x":3.208333969116211,"y":4.979167461395264,"width":13.583333969116211,"height":10.02083683013916,"opacity":1,"visible":true,"fills":[{"type":"SOLID","color":{"r":1,"g":1,"b":1},"opacity":1}],"colorToken":"hb/decorative/content-color/reverse","strokes":[],"cornerRadius":0,"effects":[],"constraints":{"horizontal":"SCALE","vertical":"SCALE"},"rotation":0,"layoutPositioning":"AUTO"}],"layoutPositioning":"AUTO"}],"layoutPositioning":"AUTO"}],"layoutPositioning":"AUTO"},{"id":"2604:687333","name":"Label","type":"TEXT","x":0,"y":0,"width":110,"height":24,"opacity":1,"visible":true,"fills":[{"type":"SOLID","color":{"r":0.062745101749897,"g":0.0941176488995552,"b":0.1568627506494522},"opacity":1}],"colorToken":"Colors/Text/text-primary (900)","strokes":[],"effects":[],"characters":"Checkbox text","fontSize":16,"fontFamily":"Inter","fontWeight":400,"lineHeight":{"unit":"PIXELS","value":24},"letterSpacing":{"unit":"PERCENT","value":0},"textAlignHorizontal":"LEFT","textAlignVertical":"TOP","textAutoResize":"WIDTH_AND_HEIGHT","typographyToken":"hb/decorative-type/body/regular","constraints":{"horizontal":"SCALE","vertical":"SCALE"},"rotation":0,"layoutPositioning":"AUTO"}]},"renderedHTML":"\n    <div id=\"variant-2604:687331\" class=\"interactive-variant\" style=\"position: relative; width: 142px; height: 24px; margin: 0 auto;\">\n  <div id=\"variant-2604:687331-2604:687331\" class=\"figma-layer\" style=\"position: absolute; left: 20.5px; top: 258px; width: 142px; height: 24px; border-radius: 0px; display: flex; flex-direction: row; padding-left: 0px; padding-right: 0px; padding-top: 0px; padding-bottom: 0px; gap: 8px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden\" data-tooltip='{\"name\":\"flavor=selected, status=hover\",\"type\":\"COMPONENT\",\"size\":\"142 × 24\",\"borderRadius\":\"0px\",\"layout\":\"HORIZONTAL\",\"gap\":\"8px\",\"itemSpacing\":\"8px\"}'>\n    <div id=\"variant-2604:687331-2604:687332\" class=\"figma-layer\" style=\"position: relative; width: 24px; height: 24px; background-color: #0d0691; border-radius: 4px; display: flex; flex-direction: row; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; gap: 10px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden\" data-tooltip='{\"name\":\"._icon_checkbox\",\"type\":\"INSTANCE\",\"size\":\"24 × 24\",\"color\":\"#0d0691\",\"colorToken\":\"hb/action/content-color/primary/hover\",\"borderRadius\":\"4px\",\"layout\":\"HORIZONTAL\",\"padding\":\"2px 2px 2px 2px\",\"paddingTop\":\"2px\",\"paddingRight\":\"2px\",\"paddingBottom\":\"2px\",\"paddingLeft\":\"2px\",\"gap\":\"10px\",\"itemSpacing\":\"10px\"}'>\n      <div id=\"variant-2604:687331-I2604:687332;465:33617\" class=\"figma-layer\" style=\"position: relative; width: 20px; height: 20px; border-radius: 0px; display: flex; flex-direction: row; padding-left: 0px; padding-right: 0px; padding-top: 4px; padding-bottom: 4px; gap: 0px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden\" data-tooltip='{\"name\":\"hb-icon\",\"type\":\"INSTANCE\",\"size\":\"20 × 20\",\"borderRadius\":\"0px\",\"layout\":\"HORIZONTAL\",\"padding\":\"4px 0px 4px 0px\",\"paddingTop\":\"4px\",\"paddingRight\":\"0px\",\"paddingBottom\":\"4px\",\"paddingLeft\":\"0px\"}'>\n        <div id=\"variant-2604:687331-I2604:687332;465:33617;2247:2298\" class=\"figma-layer\" style=\"position: relative; width: 20px; height: 20px; display: block; border-radius: 0px; overflow: hidden\" data-tooltip='{\"name\":\"icon\",\"type\":\"INSTANCE\",\"size\":\"20 × 20\",\"position\":\"(0, 0)\",\"borderRadius\":\"0px\"}'>\n          <div id=\"variant-2604:687331-I2604:687332;465:33617;2247:2298;2247:2488\" class=\"figma-layer\" style=\"position: absolute; left: 3.208333969116211px; top: 4.979167461395264px; width: 13.583333969116211px; height: 10.02083683013916px; display: block; background-color: #ffffff; border-radius: 0px\" data-tooltip='{\"name\":\"vector\",\"type\":\"VECTOR\",\"size\":\"14 × 10\",\"position\":\"(3, 5)\",\"color\":\"#ffffff\",\"colorToken\":\"hb/decorative/content-color/reverse\",\"borderRadius\":\"0px\"}'></div>\n        </div>\n      </div>\n    </div>\n    <div id=\"variant-2604:687331-2604:687333\" class=\"figma-layer\" style=\"position: relative; width: 110px; height: 24px; display: block; display: block; background-color: transparent; font-size: 16px; font-family: Inter, sans-serif; font-weight: 400; line-height: 24px; letter-spacing: 0%; text-align: left; width: auto; white-space: nowrap; color: #101828\" data-tooltip='{\"name\":\"Label\",\"type\":\"TEXT\",\"size\":\"110 × 24\",\"position\":\"(0, 0)\",\"color\":\"#101828\",\"colorToken\":\"Colors/Text/text-primary (900)\",\"fontFamily\":\"Inter\",\"fontSize\":\"16px\",\"fontWeight\":400,\"lineHeight\":\"24px\",\"letterSpacing\":\"0%\",\"typographyToken\":\"hb/decorative-type/body/regular\",\"text\":\"Checkbox text\"}'>Checkbox text</div>\n  </div>\n    </div>\n  ","properties":{"flavor":"selected","status":"hover"}},"2604:687334":{"name":"flavor=selected, status=focused","layerStructure":{"id":"2604:687334","name":"flavor=selected, status=focused","type":"COMPONENT","x":20,"y":417,"width":142,"height":24,"opacity":1,"visible":true,"fills":[],"strokes":[],"cornerRadius":0,"effects":[],"layoutMode":"HORIZONTAL","paddingLeft":0,"paddingRight":0,"paddingTop":0,"paddingBottom":0,"itemSpacing":8,"primaryAxisAlignItems":"MIN","counterAxisAlignItems":"CENTER","primaryAxisSizingMode":"AUTO","counterAxisSizingMode":"AUTO","constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"2604:687335","name":"._icon_checkbox","type":"INSTANCE","x":0,"y":0,"width":24,"height":24,"opacity":1,"visible":true,"fills":[{"type":"SOLID","color":{"r":0.054901961237192154,"g":0.21960784494876862,"b":0.8470588326454163},"opacity":1}],"colorToken":"hb/action/content-color/primary/default","strokes":[{"type":"SOLID","color":{"r":0.4588235318660736,"g":0.6666666865348816,"b":0.9686274528503418},"opacity":1,"strokeWeight":1}],"cornerRadius":4,"effects":[],"layoutMode":"HORIZONTAL","paddingLeft":2,"paddingRight":2,"paddingTop":2,"paddingBottom":2,"itemSpacing":10,"primaryAxisAlignItems":"MIN","counterAxisAlignItems":"CENTER","primaryAxisSizingMode":"AUTO","counterAxisSizingMode":"AUTO","constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"I2604:687335;465:33626","name":"hb-icon","type":"INSTANCE","x":0,"y":0,"width":20,"height":20,"opacity":1,"visible":true,"fills":[],"strokes":[],"cornerRadius":0,"effects":[],"layoutMode":"HORIZONTAL","paddingLeft":0,"paddingRight":0,"paddingTop":4,"paddingBottom":4,"itemSpacing":0,"primaryAxisAlignItems":"MIN","counterAxisAlignItems":"CENTER","primaryAxisSizingMode":"FIXED","counterAxisSizingMode":"FIXED","constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"I2604:687335;465:33626;2247:2298","name":"icon","type":"INSTANCE","x":0,"y":0,"width":20,"height":20,"opacity":1,"visible":true,"fills":[],"strokes":[],"cornerRadius":0,"effects":[],"constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"I2604:687335;465:33626;2247:2298;2247:2488","name":"vector","type":"VECTOR","x":3.208333969116211,"y":4.979167461395264,"width":13.583333969116211,"height":10.02083683013916,"opacity":1,"visible":true,"fills":[{"type":"SOLID","color":{"r":1,"g":1,"b":1},"opacity":1}],"colorToken":"hb/decorative/content-color/reverse","strokes":[],"cornerRadius":0,"effects":[],"constraints":{"horizontal":"SCALE","vertical":"SCALE"},"rotation":0,"layoutPositioning":"AUTO"}],"layoutPositioning":"AUTO"}],"layoutPositioning":"AUTO"}],"layoutPositioning":"AUTO"},{"id":"2604:687336","name":"Label","type":"TEXT","x":0,"y":0,"width":110,"height":24,"opacity":1,"visible":true,"fills":[{"type":"SOLID","color":{"r":0.062745101749897,"g":0.0941176488995552,"b":0.1568627506494522},"opacity":1}],"colorToken":"Colors/Text/text-primary (900)","strokes":[],"effects":[],"characters":"Checkbox text","fontSize":16,"fontFamily":"Inter","fontWeight":400,"lineHeight":{"unit":"PIXELS","value":24},"letterSpacing":{"unit":"PERCENT","value":0},"textAlignHorizontal":"LEFT","textAlignVertical":"TOP","textAutoResize":"WIDTH_AND_HEIGHT","typographyToken":"hb/decorative-type/body/regular","constraints":{"horizontal":"SCALE","vertical":"SCALE"},"rotation":0,"layoutPositioning":"AUTO"}]},"renderedHTML":"\n    <div id=\"variant-2604:687334\" class=\"interactive-variant\" style=\"position: relative; width: 142px; height: 24px; margin: 0 auto;\">\n  <div id=\"variant-2604:687334-2604:687334\" class=\"figma-layer\" style=\"position: absolute; left: 20px; top: 417px; width: 142px; height: 24px; border-radius: 0px; display: flex; flex-direction: row; padding-left: 0px; padding-right: 0px; padding-top: 0px; padding-bottom: 0px; gap: 8px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden\" data-tooltip='{\"name\":\"flavor=selected, status=focused\",\"type\":\"COMPONENT\",\"size\":\"142 × 24\",\"borderRadius\":\"0px\",\"layout\":\"HORIZONTAL\",\"gap\":\"8px\",\"itemSpacing\":\"8px\"}'>\n    <div id=\"variant-2604:687334-2604:687335\" class=\"figma-layer\" style=\"position: relative; width: 24px; height: 24px; background-color: #0e38d8; border: 1px solid #75aaf7; border-radius: 4px; display: flex; flex-direction: row; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; gap: 10px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden\" data-tooltip='{\"name\":\"._icon_checkbox\",\"type\":\"INSTANCE\",\"size\":\"24 × 24\",\"color\":\"#0e38d8\",\"colorToken\":\"hb/action/content-color/primary/default\",\"stroke\":\"#75aaf7 1px\",\"borderRadius\":\"4px\",\"layout\":\"HORIZONTAL\",\"padding\":\"2px 2px 2px 2px\",\"paddingTop\":\"2px\",\"paddingRight\":\"2px\",\"paddingBottom\":\"2px\",\"paddingLeft\":\"2px\",\"gap\":\"10px\",\"itemSpacing\":\"10px\"}'>\n      <div id=\"variant-2604:687334-I2604:687335;465:33626\" class=\"figma-layer\" style=\"position: relative; width: 20px; height: 20px; border-radius: 0px; display: flex; flex-direction: row; padding-left: 0px; padding-right: 0px; padding-top: 4px; padding-bottom: 4px; gap: 0px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden\" data-tooltip='{\"name\":\"hb-icon\",\"type\":\"INSTANCE\",\"size\":\"20 × 20\",\"borderRadius\":\"0px\",\"layout\":\"HORIZONTAL\",\"padding\":\"4px 0px 4px 0px\",\"paddingTop\":\"4px\",\"paddingRight\":\"0px\",\"paddingBottom\":\"4px\",\"paddingLeft\":\"0px\"}'>\n        <div id=\"variant-2604:687334-I2604:687335;465:33626;2247:2298\" class=\"figma-layer\" style=\"position: relative; width: 20px; height: 20px; display: block; border-radius: 0px; overflow: hidden\" data-tooltip='{\"name\":\"icon\",\"type\":\"INSTANCE\",\"size\":\"20 × 20\",\"position\":\"(0, 0)\",\"borderRadius\":\"0px\"}'>\n          <div id=\"variant-2604:687334-I2604:687335;465:33626;2247:2298;2247:2488\" class=\"figma-layer\" style=\"position: absolute; left: 3.208333969116211px; top: 4.979167461395264px; width: 13.583333969116211px; height: 10.02083683013916px; display: block; background-color: #ffffff; border-radius: 0px\" data-tooltip='{\"name\":\"vector\",\"type\":\"VECTOR\",\"size\":\"14 × 10\",\"position\":\"(3, 5)\",\"color\":\"#ffffff\",\"colorToken\":\"hb/decorative/content-color/reverse\",\"borderRadius\":\"0px\"}'></div>\n        </div>\n      </div>\n    </div>\n    <div id=\"variant-2604:687334-2604:687336\" class=\"figma-layer\" style=\"position: relative; width: 110px; height: 24px; display: block; display: block; background-color: transparent; font-size: 16px; font-family: Inter, sans-serif; font-weight: 400; line-height: 24px; letter-spacing: 0%; text-align: left; width: auto; white-space: nowrap; color: #101828\" data-tooltip='{\"name\":\"Label\",\"type\":\"TEXT\",\"size\":\"110 × 24\",\"position\":\"(0, 0)\",\"color\":\"#101828\",\"colorToken\":\"Colors/Text/text-primary (900)\",\"fontFamily\":\"Inter\",\"fontSize\":\"16px\",\"fontWeight\":400,\"lineHeight\":\"24px\",\"letterSpacing\":\"0%\",\"typographyToken\":\"hb/decorative-type/body/regular\",\"text\":\"Checkbox text\"}'>Checkbox text</div>\n  </div>\n    </div>\n  ","properties":{"flavor":"selected","status":"focused"}},"2604:687337":{"name":"flavor=selected, status=rest","layerStructure":{"id":"2604:687337","name":"flavor=selected, status=rest","type":"COMPONENT","x":20.5,"y":100,"width":142,"height":24,"opacity":1,"visible":true,"fills":[],"strokes":[],"cornerRadius":0,"effects":[],"layoutMode":"HORIZONTAL","paddingLeft":0,"paddingRight":0,"paddingTop":0,"paddingBottom":0,"itemSpacing":8,"primaryAxisAlignItems":"MIN","counterAxisAlignItems":"CENTER","primaryAxisSizingMode":"AUTO","counterAxisSizingMode":"AUTO","constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"2604:687338","name":"._icon_checkbox","type":"INSTANCE","x":0,"y":0,"width":24,"height":24,"opacity":1,"visible":true,"fills":[{"type":"SOLID","color":{"r":0.15294118225574493,"g":0.6549019813537598,"b":0.7215686440467834},"opacity":1}],"colorToken":"DELETED/hb/action/content-color/accent/default","strokes":[],"cornerRadius":4,"effects":[],"layoutMode":"HORIZONTAL","paddingLeft":2,"paddingRight":2,"paddingTop":2,"paddingBottom":2,"itemSpacing":10,"primaryAxisAlignItems":"MIN","counterAxisAlignItems":"CENTER","primaryAxisSizingMode":"AUTO","counterAxisSizingMode":"AUTO","constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"I2604:687338;465:33594","name":"hb-icon","type":"INSTANCE","x":0,"y":0,"width":20,"height":20,"opacity":1,"visible":true,"fills":[],"strokes":[],"cornerRadius":0,"effects":[],"layoutMode":"HORIZONTAL","paddingLeft":0,"paddingRight":0,"paddingTop":4,"paddingBottom":4,"itemSpacing":0,"primaryAxisAlignItems":"MIN","counterAxisAlignItems":"CENTER","primaryAxisSizingMode":"FIXED","counterAxisSizingMode":"FIXED","constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"I2604:687338;465:33594;2247:2298","name":"icon","type":"INSTANCE","x":0,"y":0,"width":20,"height":20,"opacity":1,"visible":true,"fills":[],"strokes":[],"cornerRadius":0,"effects":[],"constraints":{"horizontal":"MIN","vertical":"MIN"},"rotation":0,"children":[{"id":"I2604:687338;465:33594;2247:2298;2247:2488","name":"vector","type":"VECTOR","x":3.208333969116211,"y":4.979167461395264,"width":13.583333969116211,"height":10.02083683013916,"opacity":1,"visible":true,"fills":[{"type":"SOLID","color":{"r":1,"g":1,"b":1},"opacity":1}],"colorToken":"hb/decorative/content-color/reverse","strokes":[],"cornerRadius":0,"effects":[],"constraints":{"horizontal":"SCALE","vertical":"SCALE"},"rotation":0,"layoutPositioning":"AUTO"}],"layoutPositioning":"AUTO"}],"layoutPositioning":"AUTO"}],"layoutPositioning":"AUTO"},{"id":"2604:687339","name":"Label","type":"TEXT","x":0,"y":0,"width":110,"height":24,"opacity":1,"visible":true,"fills":[{"type":"SOLID","color":{"r":0.062745101749897,"g":0.0941176488995552,"b":0.1568627506494522},"opacity":1}],"colorToken":"Colors/Text/text-primary (900)","strokes":[],"effects":[],"characters":"Checkbox text","fontSize":16,"fontFamily":"Inter","fontWeight":400,"lineHeight":{"unit":"PIXELS","value":24},"letterSpacing":{"unit":"PERCENT","value":0},"textAlignHorizontal":"LEFT","textAlignVertical":"TOP","textAutoResize":"WIDTH_AND_HEIGHT","typographyToken":"hb/decorative-type/body/regular","constraints":{"horizontal":"SCALE","vertical":"SCALE"},"rotation":0,"layoutPositioning":"AUTO"}]},"renderedHTML":"\n    <div id=\"variant-2604:687337\" class=\"interactive-variant\" style=\"position: relative; width: 142px; height: 24px; margin: 0 auto;\">\n  <div id=\"variant-2604:687337-2604:687337\" class=\"figma-layer\" style=\"position: absolute; left: 20.5px; top: 100px; width: 142px; height: 24px; border-radius: 0px; display: flex; flex-direction: row; padding-left: 0px; padding-right: 0px; padding-top: 0px; padding-bottom: 0px; gap: 8px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden\" data-tooltip='{\"name\":\"flavor=selected, status=rest\",\"type\":\"COMPONENT\",\"size\":\"142 × 24\",\"borderRadius\":\"0px\",\"layout\":\"HORIZONTAL\",\"gap\":\"8px\",\"itemSpacing\":\"8px\"}'>\n    <div id=\"variant-2604:687337-2604:687338\" class=\"figma-layer\" style=\"position: relative; width: 24px; height: 24px; background-color: #27a7b8; border-radius: 4px; display: flex; flex-direction: row; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; gap: 10px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden\" data-tooltip='{\"name\":\"._icon_checkbox\",\"type\":\"INSTANCE\",\"size\":\"24 × 24\",\"color\":\"#27a7b8\",\"colorToken\":\"DELETED/hb/action/content-color/accent/default\",\"borderRadius\":\"4px\",\"layout\":\"HORIZONTAL\",\"padding\":\"2px 2px 2px 2px\",\"paddingTop\":\"2px\",\"paddingRight\":\"2px\",\"paddingBottom\":\"2px\",\"paddingLeft\":\"2px\",\"gap\":\"10px\",\"itemSpacing\":\"10px\"}'>\n      <div id=\"variant-2604:687337-I2604:687338;465:33594\" class=\"figma-layer\" style=\"position: relative; width: 20px; height: 20px; border-radius: 0px; display: flex; flex-direction: row; padding-left: 0px; padding-right: 0px; padding-top: 4px; padding-bottom: 4px; gap: 0px; position: relative; align-items: center; justify-content: flex-start; overflow: hidden\" data-tooltip='{\"name\":\"hb-icon\",\"type\":\"INSTANCE\",\"size\":\"20 × 20\",\"borderRadius\":\"0px\",\"layout\":\"HORIZONTAL\",\"padding\":\"4px 0px 4px 0px\",\"paddingTop\":\"4px\",\"paddingRight\":\"0px\",\"paddingBottom\":\"4px\",\"paddingLeft\":\"0px\"}'>\n        <div id=\"variant-2604:687337-I2604:687338;465:33594;2247:2298\" class=\"figma-layer\" style=\"position: relative; width: 20px; height: 20px; display: block; border-radius: 0px; overflow: hidden\" data-tooltip='{\"name\":\"icon\",\"type\":\"INSTANCE\",\"size\":\"20 × 20\",\"position\":\"(0, 0)\",\"borderRadius\":\"0px\"}'>\n          <div id=\"variant-2604:687337-I2604:687338;465:33594;2247:2298;2247:2488\" class=\"figma-layer\" style=\"position: absolute; left: 3.208333969116211px; top: 4.979167461395264px; width: 13.583333969116211px; height: 10.02083683013916px; display: block; background-color: #ffffff; border-radius: 0px\" data-tooltip='{\"name\":\"vector\",\"type\":\"VECTOR\",\"size\":\"14 × 10\",\"position\":\"(3, 5)\",\"color\":\"#ffffff\",\"colorToken\":\"hb/decorative/content-color/reverse\",\"borderRadius\":\"0px\"}'></div>\n        </div>\n      </div>\n    </div>\n    <div id=\"variant-2604:687337-2604:687339\" class=\"figma-layer\" style=\"position: relative; width: 110px; height: 24px; display: block; display: block; background-color: transparent; font-size: 16px; font-family: Inter, sans-serif; font-weight: 400; line-height: 24px; letter-spacing: 0%; text-align: left; width: auto; white-space: nowrap; color: #101828\" data-tooltip='{\"name\":\"Label\",\"type\":\"TEXT\",\"size\":\"110 × 24\",\"position\":\"(0, 0)\",\"color\":\"#101828\",\"colorToken\":\"Colors/Text/text-primary (900)\",\"fontFamily\":\"Inter\",\"fontSize\":\"16px\",\"fontWeight\":400,\"lineHeight\":\"24px\",\"letterSpacing\":\"0%\",\"typographyToken\":\"hb/decorative-type/body/regular\",\"text\":\"Checkbox text\"}'>Checkbox text</div>\n  </div>\n    </div>\n  ","properties":{"flavor":"selected","status":"rest"}}};
+        // Store variant screenshots for JavaScript access
+        window.variantScreenshots = {"2604:687304":"assets/2604-687304.png","2604:687307":"assets/2604-687307.png","2604:687310":"assets/2604-687310.png","2604:687313":"assets/2604-687313.png","2604:687316":"assets/2604-687316.png","2604:687319":"assets/2604-687319.png","2604:687322":"assets/2604-687322.png","2604:687325":"assets/2604-687325.png","2604:687328":"assets/2604-687328.png","2604:687331":"assets/2604-687331.png","2604:687334":"assets/2604-687334.png","2604:687337":"assets/2604-687337.png"};
+        
+        // Debug logging
+        console.log('[dokket] Variant data loaded:', {
+          variantCount: Object.keys(window.variantData || {}).length,
+          screenshotCount: Object.keys(window.variantScreenshots || {}).length,
+          firstVariant: window.variantData ? Object.keys(window.variantData)[0] : null
+        });
       </script>
       <section id="properties" class="section">
         <div class="section-header">
@@ -861,6 +1573,23 @@
         </table>
       </section>
     </main>
+
+    <!-- Details Panel -->
+    <aside class="details-panel">
+      <div class="details-panel-header">
+        <h3>Element Details</h3>
+      </div>
+      <div class="details-panel-content" id="details-panel-content">
+        <div class="no-selection">
+          <div class="no-selection-icon">👆</div>
+          <div>Click on any element to see its details</div>
+        </div>
+      </div>
+      <div class="variant-selector">
+        <div class="variant-selector-title">Variants</div>
+        <div class="variant-selector-list" id="variant-selector-list"></div>
+      </div>
+    </aside>
   </div>
 </body>
-</html>  
+</html>
